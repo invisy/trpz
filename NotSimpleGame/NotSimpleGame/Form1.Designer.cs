@@ -1,4 +1,4 @@
-﻿namespace Lab1
+﻿namespace NotSimpleGame
 {
     partial class Form1
     {
