@@ -5,15 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
 
-namespace NotSimpleGame.Models.General
+using NotSimpleGame.Models.General.Weapons;
+using NotSimpleGame.Models.General.Skins;
+
+namespace NotSimpleGame.Models.General.Characters
 {
-    abstract class Character : ICharacter
+    abstract class Character
     {
         protected Vector2 position;
         protected int health;
+        protected float money;
         protected int moveSpeed;
-        protected int jumpSpeed;
-        protected Weapon weapon; 
+        protected int jumpHeight;
+        protected Weapon weapon;
+        protected Skin skin;
 
         abstract public void Jump();
         abstract public void Move();

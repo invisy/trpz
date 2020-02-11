@@ -54,12 +54,26 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\General\Character.cs" />
-    <Compile Include="Models\General\ICharacter.cs" />
-    <Compile Include="Models\General\IWeapon.cs" />
-    <Compile Include="Models\General\Weapon.cs" />
+    <Compile Include="Models\General\Characters\Character.cs" />
+    <Compile Include="Models\General\Characters\ElfCharacter.cs" />
+    <Compile Include="Models\General\Characters\GnomeCharacter.cs" />
+    <Compile Include="Models\General\Characters\MagicianCharacter.cs" />
+    <Compile Include="Models\General\Skins\ElfSkin.cs" />
+    <Compile Include="Models\General\Skins\GnomeSkin.cs" />
+    <Compile Include="Models\General\Skins\MagicianSkin.cs" />
+    <Compile Include="Models\General\Skins\Skin.cs" />
+    <Compile Include="Models\General\Characters\WarriorCharacter.cs" />
+    <Compile Include="Models\General\Skins\WarriorSkin.cs" />
+    <Compile Include="Models\General\Weapons\Bow.cs" />
+    <Compile Include="Models\General\Weapons\Hammer.cs" />
+    <Compile Include="Models\General\Weapons\Sword.cs" />
+    <Compile Include="Models\General\Weapons\Warder.cs" />
+    <Compile Include="Models\General\Weapons\Weapon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
