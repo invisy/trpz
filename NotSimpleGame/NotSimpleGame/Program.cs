@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using NotSimpleGame.Views;
+
 namespace NotSimpleGame
 {
     static class Program
@@ -16,7 +18,7 @@ namespace NotSimpleGame
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new CharacterManagerForm());
         }
     }
 }
