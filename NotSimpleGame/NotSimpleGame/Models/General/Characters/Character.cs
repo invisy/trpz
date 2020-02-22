@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
 
-using NotSimpleGame.Models.General.Weapons;
 using NotSimpleGame.Models.General.Skins;
+using NotSimpleGame.Models.General.Weapons;
 
 namespace NotSimpleGame.Models.General.Characters
 {
@@ -17,12 +17,14 @@ namespace NotSimpleGame.Models.General.Characters
         protected float money;
         protected int moveSpeed;
         protected int jumpHeight;
-        protected Weapon weapon;
         protected Skin skin;
+        protected Weapon weapon;
 
         abstract public void Jump();
         abstract public void Move();
         abstract public void Attack();
         abstract public void Defend();
+        abstract public void setSkin(Skin newskin);
+        abstract public void setWeapon(Weapon newweapon);
     }
 }

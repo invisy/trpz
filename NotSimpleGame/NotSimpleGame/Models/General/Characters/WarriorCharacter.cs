@@ -4,10 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using NotSimpleGame.Models.General.Weapons;
+using NotSimpleGame.Models.General.Skins;
+
 namespace NotSimpleGame.Models.General.Characters
 {
     class WarriorCharacter : Character
     {
+        public override void setSkin(Skin newskin)
+        {
+            if (newskin is WarriorSkin)
+                this.skin = newskin;
+            else
+                throw new Exception("This skin isn`t for warrior!");
+        }
+
+        public override void setWeapon(Weapon newweapon)
+        {
+            if (newweapon is Sword)
+                this.weapon = newweapon;
+            else
+                throw new Exception("This weapon isn`t for warrior!");
+        }
         override public void Jump()
         {
             throw new NotImplementedException();

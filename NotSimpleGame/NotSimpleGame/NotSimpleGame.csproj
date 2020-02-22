@@ -48,11 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\CharacterManagerForm.cs">
+    <Compile Include="DAL\DataLayer.cs" />
+    <Compile Include="DAL\IDataLayer.cs" />
+    <Compile Include="Models\IСharacterManagerModel.cs" />
+    <Compile Include="Models\CharacterManagerModel.cs" />
+    <Compile Include="Presenters\CharackterManagerPresenter.cs" />
+    <Compile Include="Presenters\Presenter.cs" />
+    <Compile Include="Utils\MyIoCContainer.cs" />
+    <Compile Include="Views\CharacterManagerView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\CharacterManagerForm.Designer.cs">
-      <DependentUpon>CharacterManagerForm.cs</DependentUpon>
+    <Compile Include="Views\CharacterManagerView.Designer.cs">
+      <DependentUpon>CharacterManagerView.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\General\Characters\Character.cs" />
     <Compile Include="Models\General\Characters\ElfCharacter.cs" />
@@ -67,12 +74,14 @@
     <Compile Include="Models\General\Weapons\Bow.cs" />
     <Compile Include="Models\General\Weapons\Hammer.cs" />
     <Compile Include="Models\General\Weapons\Sword.cs" />
-    <Compile Include="Models\General\Weapons\Warder.cs" />
+    <Compile Include="Models\General\Weapons\Staff.cs" />
     <Compile Include="Models\General\Weapons\Weapon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Views\CharacterManagerForm.resx">
-      <DependentUpon>CharacterManagerForm.cs</DependentUpon>
+    <Compile Include="Views\ICharacterManagerView.cs" />
+    <Compile Include="Views\IView.cs" />
+    <EmbeddedResource Include="Views\CharacterManagerView.resx">
+      <DependentUpon>CharacterManagerView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

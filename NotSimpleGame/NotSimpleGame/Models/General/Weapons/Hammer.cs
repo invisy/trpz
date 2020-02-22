@@ -12,9 +12,5 @@ namespace NotSimpleGame.Models.General.Weapons
         {
             throw new NotImplementedException();
         }
-        override public void Reload()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

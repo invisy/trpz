@@ -13,6 +13,5 @@ namespace NotSimpleGame.Models.General.Weapons
         protected float price;
         protected String modelPath;
         public abstract void Shoot();
-        public abstract void Reload();
     }
 }

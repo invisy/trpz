@@ -1,6 +1,6 @@
 ﻿namespace NotSimpleGame.Views
 {
-    partial class CharacterManagerForm
+    partial class CharacterManagerView
     {
         /// <summary>
         /// Обязательная переменная конструктора.

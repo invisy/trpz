@@ -8,6 +8,7 @@ namespace NotSimpleGame.Models.General.Skins
 {
     abstract class Skin
     {
+        protected String name;
         protected float price;
         protected String modelPath;
         public abstract void ActivateAbility();

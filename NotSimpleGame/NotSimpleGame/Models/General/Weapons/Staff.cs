@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace NotSimpleGame.Models.General.Weapons
 {
-    class Warder : Weapon
+    class Staff : Weapon
     {
         override public void Shoot()
-        {
-            throw new NotImplementedException();
-        }
-        override public void Reload()
         {
             throw new NotImplementedException();
         }

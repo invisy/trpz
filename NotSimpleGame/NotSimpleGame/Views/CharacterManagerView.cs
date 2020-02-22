@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace NotSimpleGame.Views
 {
-    public partial class CharacterManagerForm : Form
+    public partial class CharacterManagerView : Form, ICharacterManagerView
     {
-        public CharacterManagerForm()
+        public CharacterManagerView()
         {
             InitializeComponent();
+        }
+
+        public new void Show()
+        {
+            Application.Run(this);
         }
     }
 }
