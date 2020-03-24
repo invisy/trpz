@@ -21,5 +21,10 @@ namespace NotSimpleGame.Views
         {
             Application.Run(this);
         }
+
+        private void SelectCharackerLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
