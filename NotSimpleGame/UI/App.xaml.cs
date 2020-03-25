@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Configuration;
+
 
 using NotSimpleGame.DataLayer.Repositories;
 using NotSimpleGame.Models;
@@ -23,6 +25,9 @@ namespace NotSimpleGame.UI
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            Console.WriteLine(connectionString);
 
             MyIoCContainer container = new MyIoCContainer();
             container.Register<WeaponRepository>();
