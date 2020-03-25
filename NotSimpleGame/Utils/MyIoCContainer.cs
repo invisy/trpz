@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NotSimpleGame.Utils
 {
-    class MyIoCContainer
+    public class MyIoCContainer
     {
         private readonly Dictionary<Type, RegisteredImplementation> _registeredImplementations = new Dictionary<Type, RegisteredImplementation>();
         private class RegisteredImplementation
@@ -34,6 +34,10 @@ namespace NotSimpleGame.Utils
         {
             Register<TType, TImplementation>(false, null);
         }
+        public void Register<TImplementation>() where TImplementation : class
+        {
+            Register<TImplementation, TImplementation>(false, null);
+        }
 
         public void RegisterSingleton<TType, TImplementation>() where TImplementation : class, TType
         {
@@ -41,8 +45,9 @@ namespace NotSimpleGame.Utils
         }
 
         public TTypeToResolve Resolve<TTypeToResolve>()
-    {        return (TTypeToResolve)ResolveObject(typeof(TTypeToResolve));
-    }
+        {
+            return (TTypeToResolve)ResolveObject(typeof(TTypeToResolve));
+        }
 
         private void Register<TType, TImplementation>(bool isSingleton, TImplementation instance)
         {

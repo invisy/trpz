@@ -9,9 +9,10 @@ using NotSimpleGame.Models.General.Skins;
 
 namespace NotSimpleGame.Models.General.Characters
 {
-    class GnomeCharacter : Character
+    public class GnomeCharacter : Character
     {
-        public override void setSkin(Skin newskin)
+        public override String Name { get { return "Гном"; } }
+        internal override void setSkin(Skin newskin)
         {
             if (newskin is GnomeSkin)
                 this.skin = newskin;
@@ -19,7 +20,7 @@ namespace NotSimpleGame.Models.General.Characters
                 throw new Exception("This skin isn`t for gnome!");
         }
 
-        public override void setWeapon(Weapon newweapon)
+        internal override void setWeapon(Weapon newweapon)
         {
             if (newweapon is Hammer)
                 this.weapon = newweapon;

@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharacterManagerModel.cs" />
+    <Compile Include="PlayerManager.cs" />
     <Compile Include="General\Characters\Character.cs" />
     <Compile Include="General\Characters\ElfCharacter.cs" />
     <Compile Include="General\Characters\GnomeCharacter.cs" />
@@ -57,12 +57,13 @@
     <Compile Include="General\Skins\MagicianSkin.cs" />
     <Compile Include="General\Skins\Skin.cs" />
     <Compile Include="General\Skins\WarriorSkin.cs" />
+    <Compile Include="General\Wallet.cs" />
     <Compile Include="General\Weapons\Bow.cs" />
     <Compile Include="General\Weapons\Hammer.cs" />
     <Compile Include="General\Weapons\Staff.cs" />
     <Compile Include="General\Weapons\Sword.cs" />
     <Compile Include="General\Weapons\Weapon.cs" />
-    <Compile Include="IСharacterManagerModel.cs" />
+    <Compile Include="IPlayerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

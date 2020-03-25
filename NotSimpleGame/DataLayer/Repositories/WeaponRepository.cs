@@ -8,9 +8,21 @@ using NotSimpleGame.DataLayer.Entities;
 
 namespace NotSimpleGame.DataLayer.Repositories
 {
-    class WeaponRepository : IRepository<Weapon>
+    public class WeaponRepository : IRepository<Weapon>
     {
         private List<Weapon> _weapons = new List<Weapon>();
+
+        public WeaponRepository()
+        {
+            Weapon weapon = new Weapon();
+            weapon.price = 0;
+
+            Weapon weapon2 = new Weapon();
+            weapon.price = 40;
+
+            _weapons.Add(weapon);
+            _weapons.Add(weapon2);
+        }
 
         public void Create(Weapon weapon)
         {

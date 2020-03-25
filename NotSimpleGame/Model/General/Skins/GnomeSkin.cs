@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+using NotSimpleGame.Models.General.Characters;
+
 namespace NotSimpleGame.Models.General.Skins
 {
-    class GnomeSkin : Skin
+    public class GnomeSkin : Skin
     {
-        public override void ActivateAbility()
+        override internal Type character { get { return typeof(GnomeCharacter); } }
+        override internal void ActivateAbility()
         {
             throw new NotImplementedException();
         }

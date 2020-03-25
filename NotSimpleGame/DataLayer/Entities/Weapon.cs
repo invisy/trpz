@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NotSimpleGame.DataLayer.Entities
 {
-    class Weapon
+    public class Weapon
     {
         internal float distance { get; set; }
         internal float damage { get; set; }

@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using NotSimpleGame.Models.General.Characters;
+
 namespace NotSimpleGame.Models.General.Skins
 {
     public abstract class Skin
     {
-        protected String name;
-        protected float price;
+        public String Name { get; set; } //temp
+        public float price; //temp
         protected String modelPath;
-        public abstract void ActivateAbility();
+        abstract internal Type character { get; }
+        internal abstract void ActivateAbility();
     }
 }

@@ -14,17 +14,17 @@ namespace NotSimpleGame.Models.General.Characters
     {
         protected Vector2 position;
         protected int health;
-        protected float money;
         protected int moveSpeed;
         protected int jumpHeight;
         protected Skin skin;
         protected Weapon weapon;
 
+        abstract public String Name { get; }
         abstract public void Jump();
         abstract public void Move();
         abstract public void Attack();
         abstract public void Defend();
-        abstract public void setSkin(Skin newskin);
-        abstract public void setWeapon(Weapon newweapon);
+        abstract internal void setSkin(Skin newskin);
+        abstract internal void setWeapon(Weapon newweapon);
     }
 }

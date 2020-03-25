@@ -9,9 +9,10 @@ using NotSimpleGame.Models.General.Skins;
 
 namespace NotSimpleGame.Models.General.Characters
 {
-    class ElfCharacter : Character
+    public class ElfCharacter : Character
     {
-        public override void setSkin(Skin newskin)
+        public override String Name { get { return "Ельф"; }}
+        internal override void setSkin(Skin newskin)
         {
             if (newskin is ElfSkin)
                 this.skin = newskin;
@@ -19,7 +20,7 @@ namespace NotSimpleGame.Models.General.Characters
                 throw new Exception("This skin isn`t for elf!");
         }
 
-        public override void setWeapon(Weapon newweapon)
+        internal override void setWeapon(Weapon newweapon)
         {
             if (newweapon is Bow)
                 this.weapon = newweapon;

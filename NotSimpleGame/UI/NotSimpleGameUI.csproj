@@ -55,8 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\ISelectCharacterMenuVM.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\SelectCharacterMenuVM.cs" />
-    <Page Include="SelectCharacterWindow.xaml">
+    <Compile Include="Views\ISelectCharacterWindow.cs" />
+    <Compile Include="Views\SuccessDialog.xaml.cs">
+      <DependentUpon>SuccessDialog.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\SelectCharacterWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -64,10 +70,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SelectCharacterWindow.xaml.cs">
+    <Compile Include="Views\SelectCharacterWindow.xaml.cs">
       <DependentUpon>SelectCharacterWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\SuccessDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -95,10 +105,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+      <Project>{2b2842d1-0e00-4324-a593-158d0d80ebf6}</Project>
+      <Name>DataLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Models.csproj">
       <Project>{0d2e1b13-1d28-45be-a582-d4b3de901c87}</Project>
       <Name>Models</Name>

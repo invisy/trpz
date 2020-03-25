@@ -6,7 +6,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
+using NotSimpleGame.DataLayer.Repositories;
+using NotSimpleGame.Models;
+using NotSimpleGame.UI.Views;
+using NotSimpleGame.UI.ViewModels;
 using NotSimpleGame.Utils;
+
 
 namespace NotSimpleGame.UI
 {
@@ -18,9 +23,17 @@ namespace NotSimpleGame.UI
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            Window window = new SelectCharacterWindow();
-            this.MainWindow = window;
-            window.Show();
+
+            MyIoCContainer container = new MyIoCContainer();
+            container.Register<WeaponRepository>();
+            container.Register<SkinRepository>();
+            container.Register<PlayerRepository>();
+            container.Register<IPlayerManager, PlayerManager>();
+            container.Register<ISelectCharacterMenuVM, SelectCharacterMenuVM>();
+            container.Register<ISelectCharacterWindow, SelectCharacterWindow>();
+
+            ISelectCharacterMenuVM startVM = container.Resolve<ISelectCharacterMenuVM>();
+            startVM.Start();
         }
     }
 }

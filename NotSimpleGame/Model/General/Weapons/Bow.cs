@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using NotSimpleGame.Models.General.Characters;
+
 namespace NotSimpleGame.Models.General.Weapons
 {
-    class Bow : Weapon
+    public class Bow : Weapon
     {
-        override public void Shoot()
+        override internal Type character { get { return typeof(ElfCharacter); } }
+        override internal void Shoot()
         {
             throw new NotImplementedException();
         }

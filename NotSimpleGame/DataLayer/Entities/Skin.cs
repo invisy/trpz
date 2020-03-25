@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NotSimpleGame.DataLayer.Entities
 {
-    class Skin
+    public class Skin
     {
         internal String name { get; set; }
         internal float price { get; set; }

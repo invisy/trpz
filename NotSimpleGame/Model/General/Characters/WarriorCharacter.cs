@@ -9,9 +9,10 @@ using NotSimpleGame.Models.General.Skins;
 
 namespace NotSimpleGame.Models.General.Characters
 {
-    class WarriorCharacter : Character
+    public class WarriorCharacter : Character
     {
-        public override void setSkin(Skin newskin)
+        public override String Name { get { return "Воїн"; } }
+        internal override void setSkin(Skin newskin)
         {
             if (newskin is WarriorSkin)
                 this.skin = newskin;
@@ -19,7 +20,7 @@ namespace NotSimpleGame.Models.General.Characters
                 throw new Exception("This skin isn`t for warrior!");
         }
 
-        public override void setWeapon(Weapon newweapon)
+        internal override void setWeapon(Weapon newweapon)
         {
             if (newweapon is Sword)
                 this.weapon = newweapon;

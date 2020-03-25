@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NotSimpleGame.DataLayer.Entities
+namespace NotSimpleGame.Utils
 {
-    public class Player
+    class MyMapper
     {
-        internal int money { get; set; }
+        
     }
 }

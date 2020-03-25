@@ -8,9 +8,23 @@ using NotSimpleGame.DataLayer.Entities;
 
 namespace NotSimpleGame.DataLayer.Repositories
 {
-    class SkinRepository : IRepository<Skin>
+    public class SkinRepository : IRepository<Skin>
     {
         private List<Skin> _skins = new List<Skin>();
+
+        public SkinRepository()
+        {
+            Skin skin= new Skin();
+            skin.price = 0;
+            skin.name = "Стандартний лук";
+
+            Skin skin2 = new Skin();
+            skin2.price = 40;
+            skin2.name = "Дерев'яний лук";
+
+            _skins.Add(skin);
+            _skins.Add(skin2);
+        }
 
         public void Create(Skin weapon)
         {

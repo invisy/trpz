@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
-namespace NotSimpleGame.DataLayer.Entities
+namespace NotSimpleGame.UI.Views
 {
-    public class Player
+    public interface ISelectCharacterWindow
     {
-        internal int money { get; set; }
     }
 }

@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+using NotSimpleGame.Models.General.Characters;
+
 namespace NotSimpleGame.Models.General.Weapons
 {
-    class Hammer : Weapon
+    public class Hammer : Weapon
     {
-        override public void Shoot()
+        override internal Type character { get { return typeof(GnomeCharacter); } }
+        override internal void Shoot()
         {
             throw new NotImplementedException();
         }
