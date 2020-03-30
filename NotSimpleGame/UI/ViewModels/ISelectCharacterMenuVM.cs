@@ -27,5 +27,7 @@ namespace NotSimpleGame.UI.ViewModels
         Skin SelectedSkin { get; set; }
 
         RelayCommand GoNextCommand { get; }
+
+        void Start();
     }
 }

@@ -22,6 +22,7 @@ namespace NotSimpleGame.UI.ViewModels
     public class SelectCharacterMenuVM : ISelectCharacterMenuVM
     {
         private IPlayerManager _model;
+        private ISelectCharacterWindow _view;
 
         private ObservableCollection<Character> characters;
         private ObservableCollection<Weapon> weapons;
@@ -77,9 +78,10 @@ namespace NotSimpleGame.UI.ViewModels
 
         public RelayCommand GoNextCommand { get; private set; }
 
-        public SelectCharacterMenuVM(IPlayerManager model)
+        public SelectCharacterMenuVM(IPlayerManager model, ISelectCharacterWindow view)
         {
             _model = model;
+            _view = view;
 
             player = _model.getPlayerInfo();
             characters = new ObservableCollection<Character>(_model.getCharacters());
@@ -116,6 +118,13 @@ namespace NotSimpleGame.UI.ViewModels
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public void Start()
+        {
+            Window window = (Window)_view;
+            window.DataContext = this;
+            window.Show();
         }
 
         private void GoNext()

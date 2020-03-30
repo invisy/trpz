@@ -59,6 +59,7 @@
     <Compile Include="ViewModels\ISelectCharacterMenuVM.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\SelectCharacterMenuVM.cs" />
+    <Compile Include="Views\ISelectCharacterWindow.cs" />
     <Compile Include="Views\SuccessDialog.xaml.cs">
       <DependentUpon>SuccessDialog.xaml</DependentUpon>
     </Compile>

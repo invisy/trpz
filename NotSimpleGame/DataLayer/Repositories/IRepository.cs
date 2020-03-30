@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NotSimpleGame.DataLayer.Repositories
 {
-    public interface IRepository<T> : IDisposable where T : class
+    interface IRepository<T> : IDisposable where T : class
     {
         IEnumerable<T> GetList();
         T Get(int id);

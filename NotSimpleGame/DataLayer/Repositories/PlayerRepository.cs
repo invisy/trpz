@@ -8,7 +8,7 @@ using NotSimpleGame.DataLayer.Entities;
 
 namespace NotSimpleGame.DataLayer.Repositories
 {
-    public class PlayerRepository : IRepository<Player>
+    public class PlayerRepository
     {
         private List<Player> _players = new List<Player>();
 
