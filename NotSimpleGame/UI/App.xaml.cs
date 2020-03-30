@@ -5,11 +5,13 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Configuration;
 
 
 using NotSimpleGame.DataLayer.Repositories;
 using NotSimpleGame.Models;
+using NotSimpleGame.Models.General;
+using NotSimpleGame.Models.General.Weapons;
+using NotSimpleGame.Models.General.Skins;
 using NotSimpleGame.UI.Views;
 using NotSimpleGame.UI.ViewModels;
 using NotSimpleGame.Utils;
@@ -30,15 +32,16 @@ namespace NotSimpleGame.UI
             Console.WriteLine(connectionString);
 
             MyIoCContainer container = new MyIoCContainer();
-            container.Register<WeaponRepository>();
-            container.Register<SkinRepository>();
-            container.Register<PlayerRepository>();
+            container.Register<IRepository<Weapon>, WeaponRepository>();
+            container.Register<IRepository<Skin>, SkinRepository>();
+            container.Register<IRepository<Player>, PlayerRepository>();
             container.Register<IPlayerManager, PlayerManager>();
             container.Register<ISelectCharacterMenuVM, SelectCharacterMenuVM>();
-            container.Register<ISelectCharacterWindow, SelectCharacterWindow>();
+            container.Register<SelectCharacterWindow>();
 
-            ISelectCharacterMenuVM startVM = container.Resolve<ISelectCharacterMenuVM>();
-            startVM.Start();
+            SelectCharacterWindow mainWindow = container.Resolve<SelectCharacterWindow>();
+            mainWindow.DataContext = container.Resolve<ISelectCharacterMenuVM>();
+            mainWindow.Show();
         }
     }
 }

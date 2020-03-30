@@ -23,13 +23,15 @@ namespace NotSimpleGame.Models.General
         internal void setSkin(Skin skin)
         {
             character.setSkin(skin);
-            userWallet.ChargeOff(skin.price);
+            if(!userWallet.ChargeOff(skin.price))
+                throw new Exception("Error");
         }
 
         internal void setWeapon(Weapon weapon)
         {
             character.setWeapon(weapon);
-            userWallet.ChargeOff(weapon.price);
+            if(!userWallet.ChargeOff(weapon.price))
+                throw new Exception("Error"); 
         }
     }
 }
