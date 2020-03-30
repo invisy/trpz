@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace NotSimpleGame.DataLayer.Entities
 {
-    public class Weapon
+    public class SkinEntity
     {
-        internal float distance { get; set; }
-        internal float damage { get; set; }
+        internal String name { get; set; }
         internal float price { get; set; }
         internal String modelPath { get; set; }
     }

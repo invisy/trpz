@@ -8,35 +8,35 @@ using NotSimpleGame.DataLayer.Entities;
 
 namespace NotSimpleGame.DataLayer.Repositories
 {
-    public class WeaponRepository : IRepository<Weapon>
+    public class WeaponRepository : IRepository<WeaponEntity>
     {
-        private List<Weapon> _weapons = new List<Weapon>();
+        private List<WeaponEntity> _WeaponEntitys = new List<WeaponEntity>();
 
         public WeaponRepository()
         {
-            Weapon weapon = new Weapon();
-            weapon.price = 0;
+            WeaponEntity WeaponEntity = new WeaponEntity();
+            WeaponEntity.price = 0;
 
-            Weapon weapon2 = new Weapon();
-            weapon.price = 40;
+            WeaponEntity WeaponEntity2 = new WeaponEntity();
+            WeaponEntity.price = 40;
 
-            _weapons.Add(weapon);
-            _weapons.Add(weapon2);
+            _WeaponEntitys.Add(WeaponEntity);
+            _WeaponEntitys.Add(WeaponEntity2);
         }
 
-        public void Create(Weapon weapon)
+        public void Create(WeaponEntity WeaponEntity)
         {
-            _weapons.Add(weapon);
+            _WeaponEntitys.Add(WeaponEntity);
         }
 
-        public Weapon Get(int id)
+        public WeaponEntity Get(int id)
         {
-            return new Weapon();
+            return new WeaponEntity();
         }
 
-        public IEnumerable<Weapon> GetList()
+        public IEnumerable<WeaponEntity> GetList()
         {
-            return _weapons;
+            return _WeaponEntitys;
         }
 
         public void Delete(int id)
@@ -44,7 +44,7 @@ namespace NotSimpleGame.DataLayer.Repositories
 
         }
 
-        public void Update(Weapon weapon)
+        public void Update(WeaponEntity WeaponEntity)
         {
         }
 

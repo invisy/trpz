@@ -8,37 +8,37 @@ using NotSimpleGame.DataLayer.Entities;
 
 namespace NotSimpleGame.DataLayer.Repositories
 {
-    public class SkinRepository : IRepository<Skin>
+    public class SkinRepository : IRepository<SkinEntity>
     {
-        private List<Skin> _skins = new List<Skin>();
+        private List<SkinEntity> _SkinEntitys = new List<SkinEntity>();
 
         public SkinRepository()
         {
-            Skin skin= new Skin();
-            skin.price = 0;
-            skin.name = "Стандартний лук";
+            SkinEntity SkinEntity= new SkinEntity();
+            SkinEntity.price = 0;
+            SkinEntity.name = "Стандартний лук";
 
-            Skin skin2 = new Skin();
-            skin2.price = 40;
-            skin2.name = "Дерев'яний лук";
+            SkinEntity SkinEntity2 = new SkinEntity();
+            SkinEntity2.price = 40;
+            SkinEntity2.name = "Дерев'яний лук";
 
-            _skins.Add(skin);
-            _skins.Add(skin2);
+            _SkinEntitys.Add(SkinEntity);
+            _SkinEntitys.Add(SkinEntity2);
         }
 
-        public void Create(Skin weapon)
+        public void Create(SkinEntity weapon)
         {
-            _skins.Add(weapon);
+            _SkinEntitys.Add(weapon);
         }
 
-        public Skin Get(int id)
+        public SkinEntity Get(int id)
         {
-            return new Skin();
+            return new SkinEntity();
         }
 
-        public IEnumerable<Skin> GetList()
+        public IEnumerable<SkinEntity> GetList()
         {
-            return _skins;
+            return _SkinEntitys;
         }
 
         public void Delete(int id)
@@ -46,7 +46,7 @@ namespace NotSimpleGame.DataLayer.Repositories
 
         }
 
-        public void Update(Skin weapon)
+        public void Update(SkinEntity weapon)
         {
         }
 

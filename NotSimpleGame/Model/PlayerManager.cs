@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using NotSimpleGame.DataLayer.Repositories;
+using NotSimpleGame.DataLayer.Entities;
 using NotSimpleGame.Models.General;
 using NotSimpleGame.Models.General.Skins;
 using NotSimpleGame.Models.General.Characters;
@@ -14,15 +15,15 @@ namespace NotSimpleGame.Models
 {
     public class PlayerManager : IPlayerManager
     {
-        private WeaponRepository _weaponRepo;
-        private SkinRepository _skinRepo;
+        private IRepository<WeaponEntity> _weaponRepo;
+        private IRepository<SkinEntity> _skinRepo;
 
         private Player player = new Player();                                 // temp, bcs of repository haven`t done yet
         private List<Character> characters = new List<Character>();
         private List<Weapon> weapons = new List<Weapon>();
         private List<Skin> skins = new List<Skin>();                   // >
 
-        public PlayerManager(WeaponRepository weaponRepo, SkinRepository skinRepo)
+        public PlayerManager(IRepository<WeaponEntity> weaponRepo, IRepository<SkinEntity> skinRepo)
         {
             this._weaponRepo = weaponRepo;
             this._skinRepo = skinRepo;

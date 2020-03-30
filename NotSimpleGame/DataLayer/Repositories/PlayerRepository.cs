@@ -8,30 +8,30 @@ using NotSimpleGame.DataLayer.Entities;
 
 namespace NotSimpleGame.DataLayer.Repositories
 {
-    public class PlayerRepository
+    public class PlayerRepository : IRepository<PlayerEntity>
     {
-        private List<Player> _players = new List<Player>();
+        private List<PlayerEntity> _PlayerEntitys = new List<PlayerEntity>();
 
         public PlayerRepository()
         {
-            Player player = new Player();
-            player.money = 500;
-            _players.Add(player);
+            PlayerEntity PlayerEntity = new PlayerEntity();
+            PlayerEntity.money = 500;
+            _PlayerEntitys.Add(PlayerEntity);
         }
 
-        public void Create(Player player)
+        public void Create(PlayerEntity PlayerEntity)
         {
-            _players.Add(player);
+            _PlayerEntitys.Add(PlayerEntity);
         }
 
-        public Player Get(int id)
+        public PlayerEntity Get(int id)
         {
-            return new Player();
+            return new PlayerEntity();
         }
 
-        public IEnumerable<Player> GetList()
+        public IEnumerable<PlayerEntity> GetList()
         {
-            return _players;
+            return _PlayerEntitys;
         }
 
         public void Delete(int id)
@@ -39,7 +39,7 @@ namespace NotSimpleGame.DataLayer.Repositories
 
         }
 
-        public void Update(Player player)
+        public void Update(PlayerEntity PlayerEntity)
         {
         }
 
