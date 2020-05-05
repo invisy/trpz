@@ -11,53 +11,31 @@ namespace NotSimpleGame.DL.Implementation.Repositories
 {
     public class SkinRepository : IRepository<SkinEntity>
     {
-        private List<SkinEntity> _SkinEntitys = new List<SkinEntity>();
+        private readonly NotSimpleGameDBContext _dbContext;
 
-        public SkinRepository()
+        public SkinRepository(NotSimpleGameDBContext dbContext)
         {
-            SkinEntity SkinEntity= new SkinEntity();
-            SkinEntity.price = 0;
-            SkinEntity.name = "Стандартний лук";
-
-            SkinEntity SkinEntity2 = new SkinEntity();
-            SkinEntity2.price = 40;
-            SkinEntity2.name = "Дерев'яний лук";
-
-            _SkinEntitys.Add(SkinEntity);
-            _SkinEntitys.Add(SkinEntity2);
+            _dbContext = dbContext;
         }
 
-        public void Create(SkinEntity weapon)
+        public void Create(SkinEntity skin)
         {
-            _SkinEntitys.Add(weapon);
+            _dbContext.Skins.Add(skin);
         }
 
         public SkinEntity Get(int id)
         {
-            return new SkinEntity();
+            return _dbContext.Skins.FirstOrDefault(skin => skin.Id == id);
         }
 
         public IEnumerable<SkinEntity> GetList()
         {
-            return _SkinEntitys;
+            return _dbContext.Skins;
         }
 
-        public void Delete(int id)
+        public void Delete(SkinEntity skin)
         {
-
-        }
-
-        public void Update(SkinEntity weapon)
-        {
-        }
-
-        public void Save()
-        {
-
-        }
-
-        public void Dispose()
-        {
+            _dbContext.Skins.Remove(skin);
         }
     }
 }

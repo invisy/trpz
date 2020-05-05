@@ -11,51 +11,31 @@ namespace NotSimpleGame.DL.Implementation.Repositories
 {
     public class WeaponRepository : IRepository<WeaponEntity>
     {
-        private List<WeaponEntity> _WeaponEntitys = new List<WeaponEntity>();
+        private readonly NotSimpleGameDBContext _dbContext;
 
-        public WeaponRepository()
+        public WeaponRepository(NotSimpleGameDBContext dbContext)
         {
-            WeaponEntity WeaponEntity = new WeaponEntity();
-            WeaponEntity.price = 0;
-
-            WeaponEntity WeaponEntity2 = new WeaponEntity();
-            WeaponEntity.price = 40;
-
-            _WeaponEntitys.Add(WeaponEntity);
-            _WeaponEntitys.Add(WeaponEntity2);
+            _dbContext = dbContext;
         }
 
-        public void Create(WeaponEntity WeaponEntity)
+        public void Create(WeaponEntity weaponEntity)
         {
-            _WeaponEntitys.Add(WeaponEntity);
+            _dbContext.Weapons.Add(weaponEntity);
         }
 
         public WeaponEntity Get(int id)
         {
-            return new WeaponEntity();
+            return _dbContext.Weapons.FirstOrDefault(weapon => weapon.Id == id);
         }
 
         public IEnumerable<WeaponEntity> GetList()
         {
-            return _WeaponEntitys;
+            return _dbContext.Weapons;
         }
 
-        public void Delete(int id)
+        public void Delete(WeaponEntity weaponEntity)
         {
-
-        }
-
-        public void Update(WeaponEntity WeaponEntity)
-        {
-        }
-
-        public void Save()
-        {
-
-        }
-
-        public void Dispose()
-        {
+            _dbContext.Weapons.Remove(weaponEntity);
         }
     }
 }

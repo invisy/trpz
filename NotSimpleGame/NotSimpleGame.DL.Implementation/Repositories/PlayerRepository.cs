@@ -11,46 +11,31 @@ namespace NotSimpleGame.DL.Implementation.Repositories
 {
     public class PlayerRepository : IRepository<PlayerEntity>
     {
-        private List<PlayerEntity> _PlayerEntitys = new List<PlayerEntity>();
+        private readonly NotSimpleGameDBContext _dbContext;
 
-        public PlayerRepository()
+        public PlayerRepository(NotSimpleGameDBContext dbContext)
         {
-            PlayerEntity PlayerEntity = new PlayerEntity();
-            PlayerEntity.money = 500;
-            _PlayerEntitys.Add(PlayerEntity);
+            _dbContext = dbContext;
         }
 
         public void Create(PlayerEntity PlayerEntity)
         {
-            _PlayerEntitys.Add(PlayerEntity);
+            _dbContext.Players.Add(PlayerEntity);
         }
 
         public PlayerEntity Get(int id)
         {
-            return new PlayerEntity();
+            return _dbContext.Players.FirstOrDefault(player => player.Id == id);
         }
 
         public IEnumerable<PlayerEntity> GetList()
         {
-            return _PlayerEntitys;
+            return _dbContext.Players;
         }
 
-        public void Delete(int id)
+        public void Delete(PlayerEntity PlayerEntity)
         {
-
-        }
-
-        public void Update(PlayerEntity PlayerEntity)
-        {
-        }
-
-        public void Save()
-        {
-
-        }
-
-        public void Dispose()
-        {
+            _dbContext.Players.Remove(PlayerEntity);
         }
     }
 }
