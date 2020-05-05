@@ -44,6 +44,11 @@ namespace NotSimpleGame.Utils
             Register<TType, TImplementation>(true, null);
         }
 
+        public void RegisterSingleton<TImplementation>() where TImplementation : class
+        {
+            Register<TImplementation, TImplementation>(true, null);
+        }
+
         public TTypeToResolve Resolve<TTypeToResolve>()
         {
             return (TTypeToResolve)ResolveObject(typeof(TTypeToResolve));

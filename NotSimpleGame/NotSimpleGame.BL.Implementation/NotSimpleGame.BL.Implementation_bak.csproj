@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FA3E30F4-B292-41B5-A8F1-747DA92F5094}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NotSimpleGame.BL.Implementation</RootNamespace>
+    <AssemblyName>NotSimpleGame.BL.Implementation</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLBinder.cs" />
+    <Compile Include="Services\PlayerManagerService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NotSimpleGame.DL.Abstraction\NotSimpleGame.DL.Abstraction_bak.csproj">
+      <Project>{f356430e-b7c8-4fbc-b701-a1dd5cfaeab1}</Project>
+      <Name>NotSimpleGame.DL.Abstraction_bak</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotSimpleGame.DL.Implementation\NotSimpleGame.DL.Implementation_bak.csproj">
+      <Project>{5c8f9945-8e27-4d37-8867-f72bbcec5c5b}</Project>
+      <Name>NotSimpleGame.DL.Implementation_bak</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotSimpleGame.Entities\NotSimpleGame.Entities_bak.csproj">
+      <Project>{196cab65-4e46-454a-b6c1-bd86148e1a7a}</Project>
+      <Name>NotSimpleGame.Entities_bak</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotSimpleGame.Models\NotSimpleGame.Models_bak.csproj">
+      <Project>{28df40b1-e697-4e21-ba1a-08cefa35d09e}</Project>
+      <Name>NotSimpleGame.Models_bak</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotSimpleGame.Utils\NotSimpleGame.Utils_bak.csproj">
+      <Project>{3c7baeea-c391-4657-a31c-b52b387b4f0f}</Project>
+      <Name>NotSimpleGame.Utils_bak</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

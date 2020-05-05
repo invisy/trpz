@@ -15,16 +15,13 @@ using NotSimpleGame.BL.Implementation;
 namespace NotSimpleGame.UI
 {
     /// <summary>
-    /// Логика взаимодействия для App.xaml
+    /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            Console.WriteLine(connectionString);
 
             IIoCContainer container = new MyIoCContainer();
             container.BindBL();

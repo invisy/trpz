@@ -11,6 +11,7 @@ namespace NotSimpleGame.Utils
         void Register<TType, TImplementation>() where TImplementation : class, TType;
         void Register<TImplementation>() where TImplementation : class;
         void RegisterSingleton<TType, TImplementation>() where TImplementation : class, TType;
+        void RegisterSingleton<TImplementation>() where TImplementation : class;
         TTypeToResolve Resolve<TTypeToResolve>();
     }
 }

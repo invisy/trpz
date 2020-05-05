@@ -18,6 +18,7 @@ namespace NotSimpleGame.DL.Implementation
             container.Register<IRepository<WeaponEntity>, WeaponRepository>();
             container.Register<IRepository<SkinEntity>, SkinRepository>();
             container.Register<IRepository<PlayerEntity>, PlayerRepository>();
+            container.RegisterSingleton<NotSimpleGameDBContext>();
         }
     }
 }
