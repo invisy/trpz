@@ -15,10 +15,11 @@ namespace NotSimpleGame.DL.Implementation
     {
         public static void BindDL(this IIoCContainer container)
         {
-            container.Register<IRepository<WeaponEntity>, WeaponRepository>();
-            container.Register<IRepository<SkinEntity>, SkinRepository>();
-            container.Register<IRepository<PlayerEntity>, PlayerRepository>();
+            container.Register<IRepository<WeaponEntity>, GenericRepository<WeaponEntity>>();
+            container.Register<IRepository<SkinEntity>, GenericRepository<SkinEntity>>();
+            container.Register<IRepository<PlayerEntity>, GenericRepository<PlayerEntity>>();
             container.RegisterSingleton<NotSimpleGameDBContext>();
+            container.Register<UnitOfWork>();
         }
     }
 }

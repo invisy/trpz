@@ -5,25 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 
 using NotSimpleGame.DL.Abstraction.Repositories;
-using NotSimpleGame.DL.Implementation.Repositories;
 using NotSimpleGame.Entities;
 
 namespace NotSimpleGame.DL.Implementation
 {
-    class UnitOfWork
+    public class UnitOfWork
     {
         private readonly NotSimpleGameDBContext _dbContext;
-        public IRepository<PlayerEntity> _playerReposiory { get; private set; }
-        public IRepository<WeaponEntity> _weaponsReposiory { get; private set; }
-        public IRepository<SkinEntity> _skinsReposiory { get; private set; }
-
+        public Dictionary<Type, Object> repositories = new Dictionary<Type, object>();
         public UnitOfWork(NotSimpleGameDBContext dbContext, IRepository<PlayerEntity> playerRepository, 
-            IRepository<WeaponEntity> weaponsReposiory, IRepository<SkinEntity> skinsReposiory)
+            IRepository<WeaponEntity> weaponsRepository, IRepository<SkinEntity> skinsRepository)
         {
             _dbContext = dbContext;
-            _playerReposiory = playerRepository;
-            _weaponsReposiory = weaponsReposiory;
-            _skinsReposiory = skinsReposiory;
+            repositories.Add(typeof(IRepository<PlayerEntity>), playerRepository);
+            repositories.Add(typeof(IRepository<WeaponEntity>), weaponsRepository);
+            repositories.Add(typeof(IRepository<SkinEntity>), skinsRepository);
+        }
+
+        public IRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
+        {
+            return (IRepository<TEntity>)repositories[typeof(IRepository<TEntity>)];
         }
 
         public void Save()

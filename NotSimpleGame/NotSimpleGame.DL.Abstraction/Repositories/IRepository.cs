@@ -12,5 +12,6 @@ namespace NotSimpleGame.DL.Abstraction.Repositories
         T Get(int id);
         void Create(T item);
         void Delete(T item);
+        void Update(T item);
     }
 }
