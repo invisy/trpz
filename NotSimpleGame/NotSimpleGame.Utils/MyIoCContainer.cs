@@ -39,14 +39,14 @@ namespace NotSimpleGame.Utils
             Register<TImplementation, TImplementation>(false, null);
         }
 
-        public void RegisterSingleton<TType, TImplementation>() where TImplementation : class, TType
+        public void RegisterSingleton<TType, TImplementation>(TImplementation obj) where TImplementation : class, TType
         {
-            Register<TType, TImplementation>(true, null);
+            Register<TType, TImplementation>(true, obj);
         }
 
-        public void RegisterSingleton<TImplementation>() where TImplementation : class
+        public void RegisterSingleton<TImplementation>(TImplementation obj) where TImplementation : class
         {
-            Register<TImplementation, TImplementation>(true, null);
+            Register<TImplementation, TImplementation>(true, obj);
         }
 
         public TTypeToResolve Resolve<TTypeToResolve>()
@@ -81,7 +81,7 @@ namespace NotSimpleGame.Utils
         private object GetInstance(RegisteredImplementation registeredImplementation)
         {
             object instance;
-            if (registeredImplementation.isSinglton == false)
+            if (registeredImplementation.isSinglton == false || registeredImplementation.SingletonInstance == null)
             {
                 var parameters = ResolveConstructorParameters(registeredImplementation);
                 instance = registeredImplementation.CreateInstance(parameters.ToArray());
