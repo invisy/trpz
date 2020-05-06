@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using NotSimpleGame.Utils;
 using NotSimpleGame.Entities;
+using NotSimpleGame.DL.Abstraction;
 using NotSimpleGame.DL.Abstraction.Repositories;
 using NotSimpleGame.DL.Implementation.Repositories;
 
@@ -18,8 +19,8 @@ namespace NotSimpleGame.DL.Implementation
             container.Register<IRepository<WeaponEntity>, GenericRepository<WeaponEntity>>();
             container.Register<IRepository<SkinEntity>, GenericRepository<SkinEntity>>();
             container.Register<IRepository<PlayerEntity>, GenericRepository<PlayerEntity>>();
+            container.Register<IUnitOfWork, UnitOfWork>();
             container.RegisterSingleton<NotSimpleGameDBContext>();
-            container.Register<UnitOfWork>();
         }
     }
 }

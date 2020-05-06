@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using NotSimpleGame.DL.Abstraction;
 using NotSimpleGame.DL.Abstraction.Repositories;
 using NotSimpleGame.Entities;
 
 namespace NotSimpleGame.DL.Implementation
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly NotSimpleGameDBContext _dbContext;
         public Dictionary<Type, Object> repositories = new Dictionary<Type, object>();

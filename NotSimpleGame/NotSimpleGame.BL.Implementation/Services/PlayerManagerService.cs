@@ -11,8 +11,8 @@ using NotSimpleGame.Models.Weapons;
 using NotSimpleGame.BL.Abstraction;
 
 using NotSimpleGame.Entities;
+using NotSimpleGame.DL.Abstraction;
 using NotSimpleGame.DL.Abstraction.Repositories;
-using NotSimpleGame.DL.Implementation;
 
 namespace NotSimpleGame.BL.Implementation.Services
 {
@@ -26,10 +26,10 @@ namespace NotSimpleGame.BL.Implementation.Services
         private List<Weapon> weapons = new List<Weapon>();
         private List<Skin> skins = new List<Skin>();                   // >
 
-        public PlayerManagerService(UnitOfWork uof)
+        public PlayerManagerService(IUnitOfWork uow)
         {
-            this._weaponRepo = uof.Repository<WeaponEntity>();
-            this._skinRepo = uof.Repository<SkinEntity>();
+            this._weaponRepo = uow.Repository<WeaponEntity>();
+            this._skinRepo = uow.Repository<SkinEntity>();
 
             GnomeCharacter charackter1 = new GnomeCharacter();
             MagicianCharacter charackter2 = new MagicianCharacter();
