@@ -5,16 +5,16 @@ namespace NotSimpleGame.Models
 {
     public class Wallet
     {
-        private float money;
-        public float Money { get { return money; } }
+        private uint money;
+        public uint Money { get { return money; } }
 
-        internal Wallet(float value)
+        internal Wallet(uint value)
         {
             if (value >= 0)
                 money = value;
         }
 
-        internal bool ChargeOff(float value)
+        internal bool ChargeOff(uint value)
         {
             if(value >= 0 && money >= value)
             {
@@ -25,7 +25,7 @@ namespace NotSimpleGame.Models
                 return false;
         }
 
-        internal bool ChargeOn(float value)
+        internal bool ChargeOn(uint value)
         {
             if (value >= 0)
             {

@@ -14,7 +14,7 @@ namespace NotSimpleGame.Models.Weapons
         public override CharacterType characterType { get { return CharacterType.MAGICIAN; } }
 
         public Staff(String name, float distance, float damage,
-                     float price, String modelPath) : base(name, distance, damage, price, modelPath)
+                     uint price, String modelPath) : base(name, distance, damage, price, modelPath)
         {
 
         }

@@ -12,10 +12,10 @@ namespace NotSimpleGame.Models.Skins
     {
         abstract public CharacterType characterType { get; }
         public String Name { get; protected set;  }
-        public float Price { get; protected set; }
+        public uint Price { get; protected set; }
         public String ModelPath { get; protected set; }
 
-        public Skin(String name, float price, String modelPath)
+        public Skin(String name, uint price, String modelPath)
         {
             Name = name;
             Price = price;

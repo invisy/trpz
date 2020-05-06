@@ -14,10 +14,10 @@ namespace NotSimpleGame.Models.Weapons
         public String Name { get; protected set; }
         public float Distance { get; protected set; }
         public float Damage { get; protected set; }
-        public float Price { get; protected set; }
+        public uint Price { get; protected set; }
         public String ModelPath { get; protected set; }
 
-        public Weapon(String name, float distance, float damage, float price, String modelPath)
+        public Weapon(String name, float distance, float damage, uint price, String modelPath)
         {
             Name = name;
             Distance = distance;

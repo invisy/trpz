@@ -11,7 +11,7 @@ namespace NotSimpleGame.Models
         public Wallet userWallet { get; set; }
         public Character character { get; set; }
 
-        public Player(int startMoney)
+        public Player(uint startMoney)
         {
             userWallet = new Wallet(startMoney);
         }

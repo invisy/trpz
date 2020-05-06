@@ -12,7 +12,7 @@ namespace NotSimpleGame.Models.Skins
     {
         public override CharacterType characterType { get { return CharacterType.ELF; } }
 
-        public ElfSkin(String name, float price, String modelPath) : base(name, price, modelPath)
+        public ElfSkin(String name, uint price, String modelPath) : base(name, price, modelPath)
         {
 
         }

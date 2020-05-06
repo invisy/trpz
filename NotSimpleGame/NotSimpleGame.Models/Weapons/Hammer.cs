@@ -13,7 +13,7 @@ namespace NotSimpleGame.Models.Weapons
     {
         public override CharacterType characterType { get { return CharacterType.GNOME; } }
         public Hammer(String name, float distance, float damage,
-                     float price, String modelPath) : base(name, distance, damage, price, modelPath)
+                     uint price, String modelPath) : base(name, distance, damage, price, modelPath)
         {
 
         }
