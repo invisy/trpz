@@ -23,22 +23,17 @@ namespace NotSimpleGame.DL.Implementation
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             optionsBuilder.UseSqlServer(connectionString);
             base.OnConfiguring(optionsBuilder);
+            optionsBuilder.EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            var player = new PlayerEntity
-            {
-                Id = 1,
-                Money = 500
-            };
-
             var weapon1 = new WeaponEntity
             {
                 Id = 1,
-                Price = 100,
+                Price = 0,
                 Damage = 90,
                 Distance = 200,
                 ModelPath = "models/weapons/skin1.3ds",
@@ -49,7 +44,7 @@ namespace NotSimpleGame.DL.Implementation
             var weapon2 = new WeaponEntity
             {
                 Id = 2,
-                Price = 100,
+                Price = 0,
                 Damage = 70,
                 Distance = 300,
                 ModelPath = "models/weapons/skin2.3ds",
@@ -60,7 +55,7 @@ namespace NotSimpleGame.DL.Implementation
             var weapon3 = new WeaponEntity
             {
                 Id = 3,
-                Price = 100,
+                Price = 0,
                 Damage = 120,
                 Distance = 100,
                 ModelPath = "models/weapons/skin3.3ds",
@@ -71,7 +66,7 @@ namespace NotSimpleGame.DL.Implementation
             var weapon4 = new WeaponEntity
             {
                 Id = 4,
-                Price = 100,
+                Price = 0,
                 Damage = 180,
                 Distance = 50,
                 ModelPath = "models/weapons/skin4.3ds",
@@ -115,11 +110,22 @@ namespace NotSimpleGame.DL.Implementation
                 Character = Entities.Enums.CharacterType.MAGICIAN
             };
 
+            var player = new PlayerEntity
+            {
+                Id = 1,
+                Character = Entities.Enums.CharacterType.ELF,
+                Money = 500,
+                CurrentSkinId = 2,
+                CurrentWeaponId = 2
+            };
+
             modelBuilder.Entity<PlayerEntity>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.Property(e => e.Money).IsRequired();
+                entity.HasOne<WeaponEntity>(p => p.Weapon).WithMany(p => p.Players).HasForeignKey(w => w.CurrentWeaponId);
+                entity.HasOne<SkinEntity>(p => p.Skin).WithMany(p => p.Players).HasForeignKey(s => s.CurrentSkinId);
             });
 
             modelBuilder.Entity<SkinEntity>(entity =>

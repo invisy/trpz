@@ -16,6 +16,7 @@ using NotSimpleGame.BL.Abstraction;
 
 using System.Windows;
 using NotSimpleGame.UI.Views;
+using System.Security.Cryptography.X509Certificates;
 
 namespace NotSimpleGame.UI.ViewModels
 {
@@ -41,7 +42,7 @@ namespace NotSimpleGame.UI.ViewModels
         public ObservableCollection<Character> Characters { get { return characters; } }
         public ObservableCollection<Weapon> Weapons { get { return weapons; } }
         public ObservableCollection<Skin> Skins { get { return skins; } }
-        public float Money { get { return player.userWallet.Money-WeaponPrice-SkinPrice; } }
+        public float Money { get { return player.UserWallet.Money-WeaponPrice-SkinPrice; } }
 
         public Character SelectedCharacter
         {
@@ -58,9 +59,12 @@ namespace NotSimpleGame.UI.ViewModels
             get { return selectedWeapon; }
             set
             {
-                selectedWeapon = value;
-                WeaponPrice = value.Price;
-                OnPropertyChanged("SelectedWeapon");
+                if (value != null)
+                {
+                    selectedWeapon = value;
+                    WeaponPrice = value.Price;
+                    OnPropertyChanged("SelectedWeapon");
+                }
             }
         }
 
@@ -69,9 +73,12 @@ namespace NotSimpleGame.UI.ViewModels
             get { return selectedSkin; }
             set
             {
-                selectedSkin = value;
-                SkinPrice = value.Price;
-                OnPropertyChanged("SelectedSkin");
+                if(value != null)
+                {
+                    selectedSkin = value;
+                    SkinPrice = value.Price;
+                    OnPropertyChanged("SelectedSkin");
+                }
             }
         }
 
@@ -85,8 +92,12 @@ namespace NotSimpleGame.UI.ViewModels
             characters = new ObservableCollection<Character>(_model.getCharacters());
             weapons = new ObservableCollection<Weapon>();
             skins = new ObservableCollection<Skin>();
-            if(Characters.Count > 0)
-                SelectedCharacter = Characters[0];
+            if (Characters.Count > 0)
+            {
+                SelectedCharacter = characters.Where(x => x.characterType == player.Character.characterType).FirstOrDefault();
+                SelectedSkin = skins.Where(x => x.Id == player.Character.Skin.Id).FirstOrDefault();
+                SelectedWeapon = weapons.Where(x => x.Id == player.Character.Weapon.Id).FirstOrDefault();
+            }
 
             GoNextCommand = new RelayCommand(_ => GoNext());
         }
@@ -120,7 +131,10 @@ namespace NotSimpleGame.UI.ViewModels
 
         private void GoNext()
         {
-            _model.SavePlayerInfo(selectedCharacter, selectedWeapon, selectedSkin);
+            player.Character = selectedCharacter;
+            player.setSkin(selectedSkin);
+            player.setWeapon(selectedWeapon);
+            _model.SavePlayerInfo(selectedWeapon, selectedSkin);
             Window window = new SuccessDialog();
             window.Show();
         }

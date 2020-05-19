@@ -18,6 +18,14 @@ namespace NotSimpleGame.Models.Characters
         public override int moveSpeed { get { return 120; } }
         public override int jumpHeight { get { return 120; } }
 
+        public WarriorCharacter() : base()
+        {
+        }
+
+        public WarriorCharacter(int id, Skin skin, Weapon weapon) : base(id, skin, weapon)
+        {
+        }
+
         override public void Jump()
         {
             throw new NotImplementedException();

@@ -8,24 +8,26 @@ namespace NotSimpleGame.Models
 {
     public class Player
     {
-        public Wallet userWallet { get; set; }
-        public Character character { get; set; }
-
-        public Player(uint startMoney)
+        public int Id { get; private set; }
+        public Wallet UserWallet { get; private set; }
+        public Character Character { get; set; }
+        public Player(int id, uint startMoney, Character character)
         {
-            userWallet = new Wallet(startMoney);
+            Id = id;
+            UserWallet = new Wallet(startMoney);
+            this.Character = character;
         }
 
-        internal void setSkin(Skin skin)
+        public void setSkin(Skin skin)
         {
-            character.setSkin(skin);
-            userWallet.ChargeOff(skin.Price);
+            Character.setSkin(skin);
+            UserWallet.ChargeOff(skin.Price);
         }
 
-        internal void setWeapon(Weapon weapon)
+        public void setWeapon(Weapon weapon)
         {
-            character.setWeapon(weapon);
-            userWallet.ChargeOff(weapon.Price);
+            Character.setWeapon(weapon);
+            UserWallet.ChargeOff(weapon.Price);
         }
     }
 }

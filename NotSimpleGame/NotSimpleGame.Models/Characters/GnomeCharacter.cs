@@ -18,6 +18,12 @@ namespace NotSimpleGame.Models.Characters
         public override int moveSpeed { get { return 80; } }
         public override int jumpHeight { get { return 50; } }
 
+        public GnomeCharacter() : base()
+        {
+        }
+        public GnomeCharacter(int id, Skin skin, Weapon weapon) : base(id, skin, weapon)
+        {
+        }
         override public void Jump()
         {
             throw new NotImplementedException();

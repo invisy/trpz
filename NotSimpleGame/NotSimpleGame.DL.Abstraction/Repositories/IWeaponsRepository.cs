@@ -9,5 +9,6 @@ namespace NotSimpleGame.DL.Abstraction.Repositories
     {
         IEnumerable<WeaponEntity> GetList();
         WeaponEntity Get(int id);
+        IEnumerable<WeaponEntity> FindAllByCharacter(int character);
     }
 }

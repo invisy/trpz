@@ -12,8 +12,8 @@ namespace NotSimpleGame.Models.Weapons
     {
         public override CharacterType characterType { get { return CharacterType.ELF; } }
 
-        public Bow(String name, float distance, float damage,
-                     uint price, String modelPath) : base(name, distance, damage, price, modelPath)
+        public Bow(int id, String name, float distance, float damage,
+                     uint price, String modelPath) : base(id, name, distance, damage, price, modelPath)
         {
 
         }

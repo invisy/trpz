@@ -14,48 +14,52 @@ using NotSimpleGame.Entities;
 using NotSimpleGame.DL.Abstraction;
 using NotSimpleGame.DL.Abstraction.Repositories;
 
+using NotSimpleGame.BL.Implementation.Mappers;
+
+using NotSimpleGame.BL.Abstraction.Mappers;
+
 namespace NotSimpleGame.BL.Implementation.Services
 {
     public class PlayerManagerService : IPlayerManager
     {
+        IUnitOfWork _UoW;
         private IWeaponsRepository _weaponRepo;
         private ISkinsRepository _skinRepo;
+        private IPlayerRepository _playerRepo;
 
-        private Player player = new Player(500);    // temp, bcs of repository haven`t done yet
+        private IMapper<SkinEntity, Skin> _skinsMapper;
+        private IMapper<WeaponEntity, Weapon> _weaponsMapper;
+        private IMapper<PlayerEntity, Player> _playerMapper;
+
+        Player player;
+
         private List<Character> characters = new List<Character>();
-        private List<Weapon> weapons = new List<Weapon>();
-        private List<Skin> skins = new List<Skin>();                   // >
 
-        public PlayerManagerService(IUnitOfWork uow)
+        public PlayerManagerService(IUnitOfWork UoW, IMapper<SkinEntity, Skin> skinsMapper, 
+            IMapper<WeaponEntity, Weapon> weaponsMapper, IMapper<PlayerEntity, Player> playerMapper)
         {
-            this._weaponRepo = uow.Repository<IWeaponsRepository>();
-            this._skinRepo = uow.Repository<ISkinsRepository>();
+            this._UoW = UoW;
+            this._weaponRepo = UoW.Repository<IWeaponsRepository>();
+            this._skinRepo = UoW.Repository<ISkinsRepository>();
+            this._playerRepo = UoW.Repository<IPlayerRepository>();
 
-            GnomeCharacter charackter1 = new GnomeCharacter();
-            MagicianCharacter charackter2 = new MagicianCharacter();
-            
+            this._skinsMapper = skinsMapper;
+            this._weaponsMapper = weaponsMapper;
+            this._playerMapper = playerMapper;
 
-            GnomeSkin skin1 = new GnomeSkin("Стандартний вигляд", 0, "");
-            MagicianSkin skin2 = new MagicianSkin("Стандартний вигляд", 0, "");
-            GnomeSkin skin3 = new GnomeSkin("Вогняний гном", 50, "");
-            MagicianSkin skin4 = new MagicianSkin("Водяний маг", 100, "");
+            ElfCharacter elf = new ElfCharacter();
+            GnomeCharacter gnome= new GnomeCharacter();
+            MagicianCharacter magician = new MagicianCharacter();
+            WarriorCharacter warrior = new WarriorCharacter();
 
-            Hammer weapon1 = new Hammer("Стандартний молот", 0, 0, 0, "");
-            Staff weapon2 = new Staff("Стандартний посох", 0, 0, 0, "");
-            Hammer weapon3 = new Hammer("Золотий молот", 0, 0, 280, "");
-            Staff weapon4 = new Staff("Золотий посох", 0, 0, 370, "");
+            characters.Add(elf);
+            characters.Add(gnome);
+            characters.Add(magician);
+            characters.Add(warrior);
 
-            characters.Add(charackter1);
-            characters.Add(charackter2);
-            skins.Add(skin1);
-            skins.Add(skin2);
-            skins.Add(skin3);
-            skins.Add(skin4);
-            weapons.Add(weapon1);
-            weapons.Add(weapon2);
-            weapons.Add(weapon3);
-            weapons.Add(weapon4);
-
+            PlayerEntity ent = _playerRepo.Get(1);
+            player = _playerMapper.Map(_playerRepo.Get(1));
+            Console.WriteLine(1);
         }
 
         public IEnumerable<Character> getCharacters()
@@ -64,23 +68,22 @@ namespace NotSimpleGame.BL.Implementation.Services
         }
         public IEnumerable<Weapon> getWeapons(Character selectedCharacter)
         {
-            IEnumerable<Weapon> result = weapons.Where(skin => skin.characterType == selectedCharacter.characterType);
-            return result;
+            return _weaponsMapper.Map(_weaponRepo.FindAllByCharacter((int)selectedCharacter.characterType)).ToList();
         }
         public IEnumerable<Skin> getSkins(Character selectedCharacter)
         {
-            IEnumerable<Skin> result = skins.Where(skin => skin.characterType == selectedCharacter.characterType);
-            return result;
+            return _skinsMapper.Map(_skinRepo.FindAllByCharacter((int)selectedCharacter.characterType)).ToList();
         }
         public Player getPlayerInfo()
         {
             return player;
         }
-        public void SavePlayerInfo(Character character, Weapon weapon, Skin skin)
+        public void SavePlayerInfo(Weapon weapon, Skin skin)
         {
-            if (weapon.Price + skin.Price < player.userWallet.Money)
+            if (weapon.Price + skin.Price < player.UserWallet.Money)
             {
-                //OK
+                _playerRepo.Update(_playerMapper.Map(player));
+                _UoW.Save();
             }
             else
                 throw new Exception("Error");

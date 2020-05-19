@@ -21,20 +21,36 @@ namespace NotSimpleGame.Models.Characters
 
     public abstract class Character
     {
+        public int Id { get; protected set; }
         public Vector2 position { get; protected set; }
         public abstract int health { get; }
         public abstract int moveSpeed { get; }
         public abstract int jumpHeight { get; }
-        public Skin skin { get; protected set; }
-        public Weapon weapon { get; protected set; }
+        public Skin Skin { get; protected set; }
+        public Weapon Weapon { get; protected set; }
 
         abstract public String Name { get; }
         abstract public CharacterType characterType { get; }
 
+        public Character()
+        {
+
+        }
+
+        public Character(int id, Skin skin, Weapon weapon)
+        {
+            Id = id;
+            if (skin != null && weapon != null)
+            {
+                this.setSkin(skin);
+                this.setWeapon(weapon);
+            }
+        }
+
         internal void setSkin(Skin newskin)
         {
             if (newskin.characterType == characterType)
-                this.skin = newskin;
+                this.Skin = newskin;
             else
                 throw new Exception("Select right skin!");
         }
@@ -42,7 +58,7 @@ namespace NotSimpleGame.Models.Characters
         internal void setWeapon(Weapon newweapon)
         {
             if (newweapon.characterType == characterType)
-                this.weapon = newweapon;
+                this.Weapon = newweapon;
             else
                 throw new Exception("Select right weapon!");
         }

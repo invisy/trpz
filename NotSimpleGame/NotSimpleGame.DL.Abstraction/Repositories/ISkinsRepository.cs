@@ -9,5 +9,6 @@ namespace NotSimpleGame.DL.Abstraction.Repositories
     {
         IEnumerable<SkinEntity> GetList();
         SkinEntity Get(int id);
+        IEnumerable<SkinEntity> FindAllByCharacter(int character);
     }
 }

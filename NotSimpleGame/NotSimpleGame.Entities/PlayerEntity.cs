@@ -12,6 +12,8 @@ namespace NotSimpleGame.Entities
     public class PlayerEntity : BaseEntity
     {
         public uint Money { get; set; }
+        public int CurrentSkinId { get; set; }
+        public int CurrentWeaponId { get; set; }
         public SkinEntity Skin { get; set; }
         public WeaponEntity Weapon { get; set; }
         public CharacterType Character { get; set; }

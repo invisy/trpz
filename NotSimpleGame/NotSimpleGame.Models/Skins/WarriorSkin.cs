@@ -13,7 +13,7 @@ namespace NotSimpleGame.Models.Skins
     {
         public override CharacterType characterType { get { return CharacterType.WARRIOR; } }
 
-        public WarriorSkin(String name, uint price, String modelPath) : base(name, price, modelPath)
+        public WarriorSkin(int id, String name, uint price, String modelPath) : base(id, name, price, modelPath)
         {
 
         }

@@ -10,6 +10,7 @@ namespace NotSimpleGame.Models.Weapons
 {
     public abstract class Weapon
     {
+        public int Id { get; protected set; }
         abstract public CharacterType characterType { get; }
         public String Name { get; protected set; }
         public float Distance { get; protected set; }
@@ -17,8 +18,9 @@ namespace NotSimpleGame.Models.Weapons
         public uint Price { get; protected set; }
         public String ModelPath { get; protected set; }
 
-        public Weapon(String name, float distance, float damage, uint price, String modelPath)
+        public Weapon(int id, String name, float distance, float damage, uint price, String modelPath)
         {
+            Id = id;
             Name = name;
             Distance = distance;
             Damage = damage;

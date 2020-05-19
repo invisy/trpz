@@ -14,6 +14,6 @@ namespace NotSimpleGame.BL.Abstraction
         IEnumerable<Weapon> getWeapons(Character selectedCharacter);
         IEnumerable<Skin> getSkins(Character selectedCharacter);
         Player getPlayerInfo();
-        void SavePlayerInfo(Character character, Weapon weapon, Skin skin);
+        void SavePlayerInfo(Weapon weapon, Skin skin);
     }
 }

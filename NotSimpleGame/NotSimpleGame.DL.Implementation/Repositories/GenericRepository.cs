@@ -13,7 +13,7 @@ namespace NotSimpleGame.DL.Implementation.Repositories
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity: BaseEntity
     {
         private readonly NotSimpleGameDBContext _dbContext;
-        private readonly DbSet<TEntity> _dbSet;
+        protected readonly DbSet<TEntity> _dbSet;
 
         public GenericRepository(NotSimpleGameDBContext dbContext)
         {
@@ -42,7 +42,7 @@ namespace NotSimpleGame.DL.Implementation.Repositories
 
         public virtual void Delete(TEntity entity)
         {
-            _dbSet.Remove(entity);
+            _dbSet.Remove(this.Get(entity.Id));
         }
     }
 }
