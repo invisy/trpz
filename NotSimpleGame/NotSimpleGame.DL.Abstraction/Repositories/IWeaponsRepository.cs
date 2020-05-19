@@ -5,7 +5,9 @@ using NotSimpleGame.Entities;
 
 namespace NotSimpleGame.DL.Abstraction.Repositories
 {
-    public interface IWeaponsRepository : IRepository<WeaponEntity>
+    public interface IWeaponsRepository
     {
+        IEnumerable<WeaponEntity> GetList();
+        WeaponEntity Get(int id);
     }
 }

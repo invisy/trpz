@@ -14,7 +14,7 @@ namespace NotSimpleGame.DL.Implementation
     {
         public NotSimpleGameDBContext() : base()
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

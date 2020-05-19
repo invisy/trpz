@@ -18,8 +18,8 @@ namespace NotSimpleGame.BL.Implementation.Services
 {
     public class PlayerManagerService : IPlayerManager
     {
-        private IRepository<WeaponEntity> _weaponRepo;
-        private IRepository<SkinEntity> _skinRepo;
+        private IWeaponsRepository _weaponRepo;
+        private ISkinsRepository _skinRepo;
 
         private Player player = new Player(500);    // temp, bcs of repository haven`t done yet
         private List<Character> characters = new List<Character>();

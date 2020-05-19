@@ -5,7 +5,10 @@ using NotSimpleGame.Entities;
 
 namespace NotSimpleGame.DL.Abstraction.Repositories
 {
-    public interface IPlayerRepository : IRepository<PlayerEntity>
+    public interface IPlayerRepository
     {
+        IEnumerable<PlayerEntity> GetList();
+        PlayerEntity Get(int id);
+        void Update(PlayerEntity item);
     }
 }
