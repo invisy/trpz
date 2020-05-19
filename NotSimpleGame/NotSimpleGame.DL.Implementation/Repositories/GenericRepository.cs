@@ -21,26 +21,26 @@ namespace NotSimpleGame.DL.Implementation.Repositories
             _dbSet = _dbContext.Set<TEntity>();
         }
 
-        public void Create(TEntity entity)
+        public virtual void Create(TEntity entity)
         {
             _dbSet.Add(entity);
         }
 
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
             return _dbSet.FirstOrDefault(entity => entity.Id == id);
         }
 
-        public IEnumerable<TEntity> GetList()
+        public virtual IEnumerable<TEntity> GetList()
         {
             return _dbSet;
         }
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             _dbSet.Update(entity);
         }
 
-        public void Delete(TEntity entity)
+        public virtual void Delete(TEntity entity)
         {
             _dbSet.Remove(entity);
         }

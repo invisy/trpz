@@ -28,8 +28,8 @@ namespace NotSimpleGame.BL.Implementation.Services
 
         public PlayerManagerService(IUnitOfWork uow)
         {
-            this._weaponRepo = uow.Repository<WeaponEntity>();
-            this._skinRepo = uow.Repository<SkinEntity>();
+            this._weaponRepo = uow.Repository<IWeaponsRepository>();
+            this._skinRepo = uow.Repository<ISkinsRepository>();
 
             GnomeCharacter charackter1 = new GnomeCharacter();
             MagicianCharacter charackter2 = new MagicianCharacter();

@@ -5,12 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using NotSimpleGame.Entities.Enums;
+
 namespace NotSimpleGame.Entities
 {
     public class PlayerEntity : BaseEntity
     {
-        public int money { get; set; }
+        public uint Money { get; set; }
         public SkinEntity Skin { get; set; }
-        public WeaponEntity weapon { get; set; }
+        public WeaponEntity Weapon { get; set; }
+        public CharacterType Character { get; set; }
     }
 }

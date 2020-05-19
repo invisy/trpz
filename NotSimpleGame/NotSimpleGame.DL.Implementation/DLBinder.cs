@@ -16,9 +16,9 @@ namespace NotSimpleGame.DL.Implementation
     {
         public static void BindDL(this IIoCContainer container)
         {
-            container.Register<IRepository<WeaponEntity>, GenericRepository<WeaponEntity>>();
-            container.Register<IRepository<SkinEntity>, GenericRepository<SkinEntity>>();
-            container.Register<IRepository<PlayerEntity>, GenericRepository<PlayerEntity>>();
+            container.Register<IWeaponsRepository, WeaponsRepository>();
+            container.Register<ISkinsRepository, SkinsRepository>();
+            container.Register<IPlayerRepository, PlayerRepository>();
             container.Register<IUnitOfWork, UnitOfWork>();
             container.RegisterSingleton<NotSimpleGameDBContext>();
         }
