@@ -8,7 +8,7 @@ using NotSimpleGame.Entities.Enums;
 
 namespace NotSimpleGame.Entities
 {
-    public class SkinEntity : BaseEntity
+    public class SkinEntity : BaseEntity<int>
     {
         public SkinEntity()
         {

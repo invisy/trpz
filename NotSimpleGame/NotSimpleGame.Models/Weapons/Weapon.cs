@@ -8,9 +8,8 @@ using NotSimpleGame.Models.Characters;
 
 namespace NotSimpleGame.Models.Weapons
 {
-    public abstract class Weapon
+    public abstract class Weapon : BaseModel<int>
     {
-        public int Id { get; protected set; }
         abstract public CharacterType characterType { get; }
         public String Name { get; protected set; }
         public float Distance { get; protected set; }

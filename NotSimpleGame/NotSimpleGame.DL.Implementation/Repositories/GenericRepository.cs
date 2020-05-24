@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NotSimpleGame.DL.Implementation.Repositories
 {
-    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity: BaseEntity
+    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity: BaseEntity<int>
     {
         private readonly NotSimpleGameDBContext _dbContext;
         protected readonly DbSet<TEntity> _dbSet;

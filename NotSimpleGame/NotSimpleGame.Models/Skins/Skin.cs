@@ -8,9 +8,8 @@ using NotSimpleGame.Models.Characters;
 
 namespace NotSimpleGame.Models.Skins
 {
-    public abstract class Skin
+    public abstract class Skin : BaseModel<int>
     {
-        public int Id { get; protected set; }
         abstract public CharacterType characterType { get; }
         public String Name { get; protected set;  }
         public uint Price { get; protected set; }

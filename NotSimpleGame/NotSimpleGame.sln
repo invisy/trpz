@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotSimpleGame.Utils", "NotS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotSimpleGame.UI", "NotSimpleGame.UI\NotSimpleGame.UI.csproj", "{0EACDE43-B633-462F-BC1B-92E940214E61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotSimpleGame.Models", "NotSimpleGame.Models\NotSimpleGame.Models.csproj", "{816FC7EB-938F-4138-9EBD-14A527C3641E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotSimpleGame.Models", "NotSimpleGame.Models\NotSimpleGame.Models.csproj", "{816FC7EB-938F-4138-9EBD-14A527C3641E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

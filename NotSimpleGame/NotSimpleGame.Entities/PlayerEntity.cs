@@ -9,7 +9,7 @@ using NotSimpleGame.Entities.Enums;
 
 namespace NotSimpleGame.Entities
 {
-    public class PlayerEntity : BaseEntity
+    public class PlayerEntity : BaseEntity<int>
     {
         public uint Money { get; set; }
         public int CurrentSkinId { get; set; }

@@ -19,9 +19,8 @@ namespace NotSimpleGame.Models.Characters
         WARRIOR
     }
 
-    public abstract class Character
+    public abstract class Character : BaseModel<int>
     {
-        public int Id { get; protected set; }
         public Vector2 position { get; protected set; }
         public abstract int health { get; }
         public abstract int moveSpeed { get; }

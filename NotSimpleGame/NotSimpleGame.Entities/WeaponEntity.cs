@@ -8,7 +8,7 @@ using NotSimpleGame.Entities.Enums;
 
 namespace NotSimpleGame.Entities
 {
-    public class WeaponEntity : BaseEntity
+    public class WeaponEntity : BaseEntity<int>
     {
         public WeaponEntity()
         {

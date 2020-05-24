@@ -6,9 +6,8 @@ using NotSimpleGame.Models.Skins;
 
 namespace NotSimpleGame.Models
 {
-    public class Player
+    public class Player : BaseModel<int>
     {
-        public int Id { get; private set; }
         public Wallet UserWallet { get; private set; }
         public Character Character { get; private set; }
         public Player(int id, uint startMoney, Character character)

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using NotSimpleGame.DL.Abstraction;
+﻿using NotSimpleGame.DL.Abstraction;
 using NotSimpleGame.DL.Abstraction.Repositories;
-using NotSimpleGame.DL.Implementation.Repositories;
-using NotSimpleGame.Entities;
+using System;
+using System.Collections.Generic;
 
 namespace NotSimpleGame.DL.Implementation
 {
