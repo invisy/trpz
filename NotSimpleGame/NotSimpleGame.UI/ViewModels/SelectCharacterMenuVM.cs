@@ -22,7 +22,7 @@ namespace NotSimpleGame.UI.ViewModels
 {
     public class SelectCharacterMenuVM : ISelectCharacterMenuVM
     {
-        private IPlayerManager _model;
+        private IPlayerManager _playerManager;
 
         private ObservableCollection<Character> characters;
         private ObservableCollection<Weapon> weapons;
@@ -33,25 +33,24 @@ namespace NotSimpleGame.UI.ViewModels
         private Weapon selectedWeapon;
         private Skin selectedSkin;
         private Player player;
-        private float weaponPrice;
-        private float skinPrice;
-
-        private float WeaponPrice { get { return weaponPrice; } set { weaponPrice = value; OnPropertyChanged("Money"); } }
-        private float SkinPrice  { get { return skinPrice; } set { skinPrice = value; OnPropertyChanged("Money"); } }
 
         public ObservableCollection<Character> Characters { get { return characters; } }
         public ObservableCollection<Weapon> Weapons { get { return weapons; } }
         public ObservableCollection<Skin> Skins { get { return skins; } }
-        public float Money { get { return player.UserWallet.Money-WeaponPrice-SkinPrice; } }
+        public float Money { get { return player.UserWallet.Money; } }
 
         public Character SelectedCharacter
         {
             get { return selectedCharacter; }
             set
             {
-                selectedCharacter = value;
-                CharacterWasUpdated(value);
-                OnPropertyChanged("SelectedCharacter");
+                if (value != null)
+                {
+                    player.setCharacter(value);
+                    selectedCharacter = value;
+                    CharacterWasUpdated(value);
+                    OnPropertyChanged("SelectedCharacter");
+                }
             }
         }
         public Weapon SelectedWeapon
@@ -61,8 +60,16 @@ namespace NotSimpleGame.UI.ViewModels
             {
                 if (value != null)
                 {
-                    selectedWeapon = value;
-                    WeaponPrice = value.Price;
+                    if(player.setWeapon(value))
+                    {
+                        selectedWeapon = value;
+                        OnPropertyChanged("Money");
+                    }
+                    else
+                    {
+                        Window window = new SuccessDialog("Недостатньо грошей!");
+                        window.Show();
+                    }
                     OnPropertyChanged("SelectedWeapon");
                 }
             }
@@ -73,10 +80,18 @@ namespace NotSimpleGame.UI.ViewModels
             get { return selectedSkin; }
             set
             {
-                if(value != null)
+                if (value != null)
                 {
-                    selectedSkin = value;
-                    SkinPrice = value.Price;
+                    if (player.setSkin(value))
+                    {
+                        selectedSkin = value;
+                        OnPropertyChanged("Money");
+                    }
+                    else
+                    {
+                        Window window = new SuccessDialog("Недостатньо грошей!");
+                        window.Show();
+                    }
                     OnPropertyChanged("SelectedSkin");
                 }
             }
@@ -84,32 +99,35 @@ namespace NotSimpleGame.UI.ViewModels
 
         public RelayCommand GoNextCommand { get; private set; }
 
-        public SelectCharacterMenuVM(IPlayerManager model)
+        public SelectCharacterMenuVM(IPlayerManager playerManager)
         {
-            _model = model;
+            _playerManager = playerManager;
 
-            player = _model.getPlayerInfo();
-            characters = new ObservableCollection<Character>(_model.getCharacters());
+            player = _playerManager.getPlayerInfo();
+            characters = new ObservableCollection<Character>(_playerManager.getCharacters());
             weapons = new ObservableCollection<Weapon>();
             skins = new ObservableCollection<Skin>();
-            if (Characters.Count > 0)
-            {
-                SelectedCharacter = characters.Where(x => x.characterType == player.Character.characterType).FirstOrDefault();
-                SelectedSkin = skins.Where(x => x.Id == player.Character.Skin.Id).FirstOrDefault();
-                SelectedWeapon = weapons.Where(x => x.Id == player.Character.Weapon.Id).FirstOrDefault();
-            }
+
+            selectedCharacter = player.Character;
+            IEnumerable<Skin> skinsList = _playerManager.getSkins(selectedCharacter);
+            UpdateObservableFromIEnumerable<Skin>(skins, skinsList);
+            IEnumerable<Weapon> weaponList = _playerManager.getWeapons(selectedCharacter);
+            UpdateObservableFromIEnumerable(weapons, weaponList);
+
+            selectedSkin = skins.Where(x => x.Id == player.Character.Skin.Id).FirstOrDefault();
+            selectedWeapon = weapons.Where(x => x.Id == player.Character.Weapon.Id).FirstOrDefault();
 
             GoNextCommand = new RelayCommand(_ => GoNext());
         }
 
         void CharacterWasUpdated(Character character)
         {
-            IEnumerable<Skin> skinsList = _model.getSkins(character);
+            IEnumerable<Skin> skinsList = _playerManager.getSkins(character);
             UpdateObservableFromIEnumerable<Skin>(skins, skinsList);
             if (Skins.Count > 0)
                 SelectedSkin = Skins[0];
 
-            IEnumerable<Weapon> weaponList = _model.getWeapons(character);
+            IEnumerable<Weapon> weaponList = _playerManager.getWeapons(character);
             UpdateObservableFromIEnumerable(weapons, weaponList);
             if (Weapons.Count > 0)
                 SelectedWeapon = Weapons[0];
@@ -131,11 +149,8 @@ namespace NotSimpleGame.UI.ViewModels
 
         private void GoNext()
         {
-            player.Character = selectedCharacter;
-            player.setSkin(selectedSkin);
-            player.setWeapon(selectedWeapon);
-            _model.SavePlayerInfo(selectedWeapon, selectedSkin);
-            Window window = new SuccessDialog();
+            _playerManager.SavePlayerInfo(selectedWeapon, selectedSkin);
+            Window window = new SuccessDialog("Успіх!");
             window.Show();
         }
     }

@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotSimpleGame.UI.Views"
         mc:Ignorable="d"
-        Title="SuccessDialog" Height="83.181" Width="156.363" ResizeMode="NoResize">
+        Title="SuccessDialog" Height="83.181" Width="237" ResizeMode="NoResize">
     <Grid>
-        <Label Content="Успіх!" HorizontalAlignment="Left" Margin="38,0,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.594,0.514"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6.014"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="4,1,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.549,0.532" Loaded="Label_Loaded" Grid.Column="1" Width="217" Height="49"/>
     </Grid>
 </Window>

@@ -19,9 +19,17 @@ namespace NotSimpleGame.UI.Views
     /// </summary>
     public partial class SuccessDialog : Window
     {
-        public SuccessDialog()
+        String _text;
+        public SuccessDialog(String text)
         {
             InitializeComponent();
+            _text =  text;
+        }
+
+        private void Label_Loaded(object sender, RoutedEventArgs e)
+        {
+            var label = sender as Label;
+            label.Content = _text;
         }
     }
 }

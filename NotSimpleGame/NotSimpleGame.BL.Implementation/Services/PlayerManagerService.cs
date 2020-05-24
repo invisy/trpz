@@ -8,14 +8,11 @@ using NotSimpleGame.Models;
 using NotSimpleGame.Models.Skins;
 using NotSimpleGame.Models.Characters;
 using NotSimpleGame.Models.Weapons;
-using NotSimpleGame.BL.Abstraction;
 
 using NotSimpleGame.Entities;
 using NotSimpleGame.DL.Abstraction;
 using NotSimpleGame.DL.Abstraction.Repositories;
-
-using NotSimpleGame.BL.Implementation.Mappers;
-
+using NotSimpleGame.BL.Abstraction;
 using NotSimpleGame.BL.Abstraction.Mappers;
 
 namespace NotSimpleGame.BL.Implementation.Services
@@ -47,19 +44,18 @@ namespace NotSimpleGame.BL.Implementation.Services
             this._weaponsMapper = weaponsMapper;
             this._playerMapper = playerMapper;
 
-            ElfCharacter elf = new ElfCharacter();
-            GnomeCharacter gnome= new GnomeCharacter();
-            MagicianCharacter magician = new MagicianCharacter();
-            WarriorCharacter warrior = new WarriorCharacter();
+            characters.Add(new ElfCharacter());
+            characters.Add(new GnomeCharacter());
+            characters.Add(new MagicianCharacter());
+            characters.Add(new WarriorCharacter());
 
-            characters.Add(elf);
-            characters.Add(gnome);
-            characters.Add(magician);
-            characters.Add(warrior);
-
-            PlayerEntity ent = _playerRepo.Get(1);
             player = _playerMapper.Map(_playerRepo.Get(1));
-            Console.WriteLine(1);
+
+            for (int i=0; i < characters.Count; i++)
+            {
+                if (characters[i].GetType() == player.Character.GetType())
+                    characters[i] = player.Character;
+            }
         }
 
         public IEnumerable<Character> getCharacters()
@@ -68,11 +64,11 @@ namespace NotSimpleGame.BL.Implementation.Services
         }
         public IEnumerable<Weapon> getWeapons(Character selectedCharacter)
         {
-            return _weaponsMapper.Map(_weaponRepo.FindAllByCharacter((int)selectedCharacter.characterType)).ToList();
+            return _weaponsMapper.Map(_weaponRepo.FindAllByCharacter((int)selectedCharacter.characterType));
         }
         public IEnumerable<Skin> getSkins(Character selectedCharacter)
         {
-            return _skinsMapper.Map(_skinRepo.FindAllByCharacter((int)selectedCharacter.characterType)).ToList();
+            return _skinsMapper.Map(_skinRepo.FindAllByCharacter((int)selectedCharacter.characterType));
         }
         public Player getPlayerInfo()
         {
@@ -80,13 +76,8 @@ namespace NotSimpleGame.BL.Implementation.Services
         }
         public void SavePlayerInfo(Weapon weapon, Skin skin)
         {
-            if (weapon.Price + skin.Price < player.UserWallet.Money)
-            {
-                _playerRepo.Update(_playerMapper.Map(player));
-                _UoW.Save();
-            }
-            else
-                throw new Exception("Error");
+            _playerRepo.Update(_playerMapper.Map(player));
+            _UoW.Save();
         }
     }
 }

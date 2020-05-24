@@ -63,6 +63,12 @@ namespace NotSimpleGame.Models.Characters
                 throw new Exception("Select right weapon!");
         }
 
+        internal void toDefault()
+        {
+            this.Weapon = null;
+            this.Skin = null;
+        }
+
         abstract public void Jump();
         abstract public void Move();
         abstract public void Attack();

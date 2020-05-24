@@ -74,6 +74,17 @@ namespace NotSimpleGame.DL.Implementation
                 Character = Entities.Enums.CharacterType.MAGICIAN
             };
 
+            var weapon5 = new WeaponEntity
+            {
+                Id = 5,
+                Price = 300,
+                Damage = 220,
+                Distance = 50,
+                ModelPath = "models/weapons/skin5.3ds",
+                Name = "Золотий посох",
+                Character = Entities.Enums.CharacterType.MAGICIAN
+            };
+
             var skin1 = new SkinEntity
             {
                 Id = 1,
@@ -107,6 +118,24 @@ namespace NotSimpleGame.DL.Implementation
                 Price = 0,
                 ModelPath = "models/skins/skin4.3ds",
                 Name = "Стандартний вигляд",
+                Character = Entities.Enums.CharacterType.MAGICIAN
+            };
+
+            var skin5 = new SkinEntity
+            {
+                Id = 5,
+                Price = 100,
+                ModelPath = "models/skins/skin5.3ds",
+                Name = "Маг з плащем",
+                Character = Entities.Enums.CharacterType.MAGICIAN
+            };
+
+            var skin6 = new SkinEntity
+            {
+                Id = 6,
+                Price = 300,
+                ModelPath = "models/skins/skin6.3ds",
+                Name = "Маг в костюмі",
                 Character = Entities.Enums.CharacterType.MAGICIAN
             };
 
@@ -150,8 +179,8 @@ namespace NotSimpleGame.DL.Implementation
             });
 
             modelBuilder.Entity<PlayerEntity>().HasData(player);
-            modelBuilder.Entity<WeaponEntity>().HasData(weapon1, weapon2, weapon3, weapon4);
-            modelBuilder.Entity<SkinEntity>().HasData(skin1, skin2, skin3, skin4);
+            modelBuilder.Entity<WeaponEntity>().HasData(weapon1, weapon2, weapon3, weapon4, weapon5);
+            modelBuilder.Entity<SkinEntity>().HasData(skin1, skin2, skin3, skin4, skin5, skin6);
         }
     }
 }

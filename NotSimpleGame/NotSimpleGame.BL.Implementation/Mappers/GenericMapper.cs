@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 
 using NotSimpleGame.BL.Abstraction.Mappers;
-using NotSimpleGame.Entities.Enums;
-using NotSimpleGame.Models.Characters;
 
 namespace NotSimpleGame.BL.Implementation.Mappers
 {
