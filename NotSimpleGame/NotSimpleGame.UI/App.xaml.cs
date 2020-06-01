@@ -10,6 +10,7 @@ using NotSimpleGame.UI.Views;
 using NotSimpleGame.UI.ViewModels;
 using NotSimpleGame.Utils;
 
+using NotSimpleGame.DL.Implementation;
 using NotSimpleGame.BL.Implementation;
 
 namespace NotSimpleGame.UI
@@ -24,6 +25,8 @@ namespace NotSimpleGame.UI
             base.OnStartup(e);
 
             IIoCContainer container = new MyIoCContainer();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            container.BindDL(connectionString);
             container.BindBL();
             container.Register<ISelectCharacterMenuVM, SelectCharacterMenuVM>();
             container.Register<SelectCharacterWindow>();
@@ -32,5 +35,6 @@ namespace NotSimpleGame.UI
             mainWindow.DataContext = container.Resolve<ISelectCharacterMenuVM>();
             mainWindow.Show();
         }
+
     }
 }

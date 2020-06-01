@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NotSimpleGame.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace NotSimpleGame.DL.Abstraction.Repositories
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<TEntity, Tkey> where TEntity : BaseEntity<Tkey>
     {
-        IEnumerable<T> GetList();
-        T Get(int id);
-        void Create(T item);
-        void Delete(T item);
-        void Update(T item);
+        IEnumerable<TEntity> GetList();
+        TEntity Get(Tkey id);
+        void Create(TEntity item);
+        void Delete(TEntity item);
+        void Update(TEntity item);
     }
 }

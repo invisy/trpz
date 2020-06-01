@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace NotSimpleGame.DL.Implementation
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly NotSimpleGameDBContext _dbContext;
         private Dictionary<Type, Object> _repositories = new Dictionary<Type, object>();
@@ -29,6 +29,12 @@ namespace NotSimpleGame.DL.Implementation
         public void Save()
         {
             _dbContext.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            _dbContext.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

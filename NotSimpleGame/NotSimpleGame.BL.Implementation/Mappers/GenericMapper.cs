@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using NotSimpleGame.DL.Abstraction;
 
 using NotSimpleGame.BL.Abstraction.Mappers;
 
@@ -8,10 +9,6 @@ namespace NotSimpleGame.BL.Implementation.Mappers
 {
     abstract class GenericMapper<TEntity, TModel> : IMapper<TEntity, TModel>
     {
-        public GenericMapper()
-        {
-        }
-
         public abstract TModel Map(TEntity entity);
         public abstract TEntity Map(TModel entity);
 

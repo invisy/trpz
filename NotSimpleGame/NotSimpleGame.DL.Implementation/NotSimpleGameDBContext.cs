@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using NotSimpleGame.Entities;
 using System.Configuration;
 
@@ -6,18 +7,16 @@ namespace NotSimpleGame.DL.Implementation
 {
     public class NotSimpleGameDBContext : DbContext
     {
-        public NotSimpleGameDBContext() : base()
+        public NotSimpleGameDBContext(DbContextOptions<NotSimpleGameDBContext> options) : base(options)
         {
-            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            optionsBuilder.UseSqlServer(connectionString);
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.EnableSensitiveDataLogging();
+            var lf = new LoggerFactory();
+            lf.AddProvider(new MyLoggerProvider());
+            optionsBuilder.UseLoggerFactory(lf);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -138,8 +137,8 @@ namespace NotSimpleGame.DL.Implementation
                 Id = 1,
                 Character = Entities.Enums.CharacterType.ELF,
                 Money = 500,
-                CurrentSkinId = 2,
-                CurrentWeaponId = 2
+                SkinId = 2,
+                WeaponId = 2
             };
 
             modelBuilder.Entity<PlayerEntity>(entity =>
@@ -147,8 +146,8 @@ namespace NotSimpleGame.DL.Implementation
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.Property(e => e.Money).IsRequired();
-                entity.HasOne<WeaponEntity>(p => p.Weapon).WithMany(p => p.Players).HasForeignKey(w => w.CurrentWeaponId);
-                entity.HasOne<SkinEntity>(p => p.Skin).WithMany(p => p.Players).HasForeignKey(s => s.CurrentSkinId);
+                entity.HasOne<WeaponEntity>().WithMany().HasForeignKey(w => w.WeaponId);
+                entity.HasOne<SkinEntity>().WithMany().HasForeignKey(s => s.SkinId);
             });
 
             modelBuilder.Entity<SkinEntity>(entity =>

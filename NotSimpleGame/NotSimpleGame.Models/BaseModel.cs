@@ -4,8 +4,8 @@ using System.Text;
 
 namespace NotSimpleGame.Models
 {
-    public abstract class BaseModel<T>
+    public abstract class BaseModel<TKey>
     {
-        public T Id { get; set; }
+        public TKey Id { get; set; }
     }
 }

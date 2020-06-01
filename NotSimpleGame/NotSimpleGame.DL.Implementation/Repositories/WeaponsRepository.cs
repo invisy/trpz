@@ -9,7 +9,7 @@ using NotSimpleGame.Entities.Enums;
 
 namespace NotSimpleGame.DL.Implementation.Repositories
 {
-    public class WeaponsRepository : GenericRepository<WeaponEntity>, IWeaponsRepository
+    public class WeaponsRepository : GenericRepository<WeaponEntity, int>, IWeaponsRepository
     {
         public WeaponsRepository(NotSimpleGameDBContext dbContext) : base(dbContext)
         {
@@ -17,9 +17,8 @@ namespace NotSimpleGame.DL.Implementation.Repositories
         }
         public IEnumerable<WeaponEntity> FindAllByCharacter(int character)
         {
-            IQueryable<WeaponEntity> weaponIQueryable = _dbSet.AsQueryable();
-            IQueryable<WeaponEntity> result = weaponIQueryable.Where(weapon => weapon.Character == (CharacterType)character);
-            return result;
+            IQueryable<WeaponEntity> result = _dbSet.AsQueryable().Where(weapon => weapon.Character == (CharacterType)character);
+            return result.ToList();
         }
     }
 }

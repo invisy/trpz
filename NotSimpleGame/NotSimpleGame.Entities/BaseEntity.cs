@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace NotSimpleGame.Entities
 {
-    public abstract class BaseEntity<T>
+    public abstract class BaseEntity<TKey>
     {
-        public T Id { get; set; }
+        public TKey Id { get; set; }
     }
 }

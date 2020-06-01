@@ -23,7 +23,6 @@ namespace NotSimpleGame.BL.Implementation
     {
         public static void BindBL(this IIoCContainer container)
         {
-            container.BindDL();
             container.RegisterSingleton<IPlayerManager, PlayerManagerService>();
             container.Register<IMapper<SkinEntity, Skin>, SkinsMapper>();
             container.Register<IMapper<WeaponEntity, Weapon>, WeaponsMapper>();

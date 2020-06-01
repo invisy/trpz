@@ -8,7 +8,7 @@ using NotSimpleGame.Entities.Enums;
 
 namespace NotSimpleGame.DL.Implementation.Repositories
 {
-    public class SkinsRepository : GenericRepository<SkinEntity>, ISkinsRepository
+    public class SkinsRepository : GenericRepository<SkinEntity, int>, ISkinsRepository
     {
         public SkinsRepository(NotSimpleGameDBContext dbContext) : base(dbContext)
         {
@@ -17,9 +17,8 @@ namespace NotSimpleGame.DL.Implementation.Repositories
 
         public IEnumerable<SkinEntity> FindAllByCharacter(int character)
         {
-            IQueryable<SkinEntity> skinIQueryable = _dbSet.AsQueryable();
-            IQueryable<SkinEntity> result = skinIQueryable.Where(skin => skin.Character == (CharacterType)character);
-            return result;
+            IQueryable<SkinEntity> result = _dbSet.AsQueryable().Where(skin => skin.Character == (CharacterType)character);
+            return result.ToList();
         }
     }
 }

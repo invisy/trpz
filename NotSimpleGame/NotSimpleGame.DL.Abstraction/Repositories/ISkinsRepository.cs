@@ -5,10 +5,8 @@ using NotSimpleGame.Entities;
 
 namespace NotSimpleGame.DL.Abstraction.Repositories
 {
-    public interface ISkinsRepository
+    public interface ISkinsRepository : IRepository<SkinEntity, int>
     {
-        IEnumerable<SkinEntity> GetList();
-        SkinEntity Get(int id);
         IEnumerable<SkinEntity> FindAllByCharacter(int character);
     }
 }

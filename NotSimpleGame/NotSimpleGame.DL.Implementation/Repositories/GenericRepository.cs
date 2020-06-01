@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using NotSimpleGame.Entities;
 using NotSimpleGame.DL.Abstraction.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace NotSimpleGame.DL.Implementation.Repositories
 {
-    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity: BaseEntity<int>
+    public class GenericRepository<TEntity, Tkey> : IRepository<TEntity, Tkey> where TEntity: BaseEntity<Tkey> where Tkey : IComparable
     {
         private readonly NotSimpleGameDBContext _dbContext;
         protected readonly DbSet<TEntity> _dbSet;
@@ -26,9 +26,9 @@ namespace NotSimpleGame.DL.Implementation.Repositories
             _dbSet.Add(entity);
         }
 
-        public virtual TEntity Get(int id)
+        public virtual TEntity Get(Tkey id)
         {
-            return _dbSet.FirstOrDefault(entity => entity.Id == id);
+            return _dbSet.Find(id);
         }
 
         public virtual IEnumerable<TEntity> GetList()
@@ -37,7 +37,8 @@ namespace NotSimpleGame.DL.Implementation.Repositories
         }
         public virtual void Update(TEntity entity)
         {
-            _dbSet.Update(entity);
+            TEntity find = this.Get(entity.Id);
+            _dbContext.Entry(find).CurrentValues.SetValues(entity);
         }
 
         public virtual void Delete(TEntity entity)
