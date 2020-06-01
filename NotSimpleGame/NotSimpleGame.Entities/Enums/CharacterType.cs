@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NotSimpleGame.Entities.Enums
+﻿namespace NotSimpleGame.Entities.Enums
 {
     public enum CharacterType
     {

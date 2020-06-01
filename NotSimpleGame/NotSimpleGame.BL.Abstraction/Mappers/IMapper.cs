@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using NotSimpleGame.Models.Skins;
+﻿using System.Collections.Generic;
 
 namespace NotSimpleGame.BL.Abstraction.Mappers
 {

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NotSimpleGame.Entities;
+﻿using Microsoft.EntityFrameworkCore;
 using NotSimpleGame.DL.Abstraction.Repositories;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
+using NotSimpleGame.Entities;
+using System;
+using System.Collections.Generic;
 
 namespace NotSimpleGame.DL.Implementation.Repositories
 {
-    public class GenericRepository<TEntity, Tkey> : IRepository<TEntity, Tkey> where TEntity: BaseEntity<Tkey> where Tkey : IComparable
+    public class GenericRepository<TEntity, Tkey> : IRepository<TEntity, Tkey> where TEntity : BaseEntity<Tkey> where Tkey : IComparable
     {
         private readonly NotSimpleGameDBContext _dbContext;
         protected readonly DbSet<TEntity> _dbSet;

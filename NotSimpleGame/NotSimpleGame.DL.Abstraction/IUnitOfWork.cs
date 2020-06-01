@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NotSimpleGame.DL.Abstraction
+﻿namespace NotSimpleGame.DL.Abstraction
 {
     public interface IUnitOfWork
     {

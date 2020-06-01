@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NotSimpleGame.Entities;
-using System.Configuration;
 
 namespace NotSimpleGame.DL.Implementation
 {
@@ -146,8 +145,8 @@ namespace NotSimpleGame.DL.Implementation
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.Property(e => e.Money).IsRequired();
-                entity.HasOne<WeaponEntity>().WithMany().HasForeignKey(w => w.WeaponId);
-                entity.HasOne<SkinEntity>().WithMany().HasForeignKey(s => s.SkinId);
+                entity.HasOne<WeaponEntity>(p => p.Weapon).WithMany(p => p.Players).HasForeignKey(w => w.WeaponId);
+                entity.HasOne<SkinEntity>(p => p.Skin).WithMany(p => p.Players).HasForeignKey(s => s.SkinId);
             });
 
             modelBuilder.Entity<SkinEntity>(entity =>

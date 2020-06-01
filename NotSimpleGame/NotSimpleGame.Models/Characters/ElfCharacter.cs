@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using NotSimpleGame.Models.Skins;
 using NotSimpleGame.Models.Weapons;
-using NotSimpleGame.Models.Skins;
+using System;
 
 namespace NotSimpleGame.Models.Characters
 {
     public class ElfCharacter : Character
     {
-        public override String Name { get { return "Ельф"; }}
+        public override String Name { get { return "Ельф"; } }
         public override CharacterType characterType { get { return CharacterType.ELF; } }
 
         public override int health { get { return 200; } }

@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Numerics;
-
-using NotSimpleGame.Models.Skins;
+﻿using NotSimpleGame.Models.Skins;
 using NotSimpleGame.Models.Weapons;
+using System;
+using System.Numerics;
 
 namespace NotSimpleGame.Models.Characters
 {
     public enum CharacterType
     {
-        DEFAULT=0,
+        DEFAULT = 0,
         ELF,
         GNOME,
         MAGICIAN,

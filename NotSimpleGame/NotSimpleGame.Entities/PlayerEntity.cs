@@ -1,10 +1,4 @@
-﻿using NotSimpleGame.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using NotSimpleGame.Entities.Enums;
 
 namespace NotSimpleGame.Entities
@@ -14,6 +8,8 @@ namespace NotSimpleGame.Entities
         public uint Money { get; set; }
         public int SkinId { get; set; }
         public int WeaponId { get; set; }
+        public SkinEntity Skin { get; set; }
+        public WeaponEntity Weapon { get; set; }
         public CharacterType Character { get; set; }
     }
 }

@@ -1,34 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using NotSimpleGame.DL.Abstraction;
-using NotSimpleGame.BL.Abstraction.Mappers;
-
-using NotSimpleGame.Models.Characters;
+﻿using NotSimpleGame.BL.Abstraction.Mappers;
 using NotSimpleGame.Entities;
 using NotSimpleGame.Models;
+using NotSimpleGame.Models.Characters;
 using NotSimpleGame.Models.Skins;
 using NotSimpleGame.Models.Weapons;
-using NotSimpleGame.DL.Implementation.Repositories;
-using NotSimpleGame.DL.Abstraction.Repositories;
+using System;
+using System.Collections.Generic;
+
 
 namespace NotSimpleGame.BL.Implementation.Mappers
 {
     class PlayerMapper : GenericMapper<PlayerEntity, Player>
     {
-        private Dictionary<Entities.Enums.CharacterType, Type> charactarTypesDict = 
+        private Dictionary<Entities.Enums.CharacterType, Type> charactarTypesDict =
             new Dictionary<Entities.Enums.CharacterType, Type>();
-        private readonly IUnitOfWork _uof;
 
         private IMapper<SkinEntity, Skin> _skinMapper;
         private IMapper<WeaponEntity, Weapon> _weaponMapper;
 
-        public PlayerMapper(IUnitOfWork uof, IMapper<SkinEntity, Skin> skinMapper, IMapper<WeaponEntity, Weapon> weaponMapper)
+        public PlayerMapper(IMapper<SkinEntity, Skin> skinMapper, IMapper<WeaponEntity, Weapon> weaponMapper)
         {
             _skinMapper = skinMapper;
             _weaponMapper = weaponMapper;
-            _uof = uof;
 
             charactarTypesDict.Add(Entities.Enums.CharacterType.ELF, typeof(ElfCharacter));
             charactarTypesDict.Add(Entities.Enums.CharacterType.GNOME, typeof(GnomeCharacter));
@@ -39,12 +32,7 @@ namespace NotSimpleGame.BL.Implementation.Mappers
         {
             Type type = charactarTypesDict[entity.Character];
 
-            SkinEntity skinEntity = _uof.Repository<ISkinsRepository>().Get(entity.SkinId);
-            Skin skin = _skinMapper.Map(skinEntity);
-            WeaponEntity weaponEntity = _uof.Repository<IWeaponsRepository>().Get(entity.WeaponId);
-            Weapon weapon = _weaponMapper.Map(weaponEntity);
-
-            Character character = (Character)Activator.CreateInstance(type, entity.Id, skin, weapon);
+            Character character = (Character)Activator.CreateInstance(type, entity.Id, _skinMapper.Map(entity.Skin), _weaponMapper.Map(entity.Weapon));
             Player player = (Player)Activator.CreateInstance(typeof(Player), entity.Id, entity.Money, character);
             return player;
         }

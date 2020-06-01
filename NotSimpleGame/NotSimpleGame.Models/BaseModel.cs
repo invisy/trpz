@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NotSimpleGame.Models
+﻿namespace NotSimpleGame.Models
 {
     public abstract class BaseModel<TKey>
     {

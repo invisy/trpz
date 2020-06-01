@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-
+﻿
 using NotSimpleGame.Models.Characters;
 using NotSimpleGame.Models.Skins;
 using NotSimpleGame.Models.Weapons;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace NotSimpleGame.UI.ViewModels
 {

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NotSimpleGame.Utils
 {
@@ -25,7 +23,7 @@ namespace NotSimpleGame.Utils
             {
                 object instance = Activator.CreateInstance(ImplementationType, args);
                 if (isSinglton)
-                    SingletonInstance = instance; 
+                    SingletonInstance = instance;
                 return instance;
             }
         }

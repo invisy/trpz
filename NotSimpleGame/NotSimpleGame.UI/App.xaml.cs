@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-
-using NotSimpleGame.UI.Views;
-using NotSimpleGame.UI.ViewModels;
-using NotSimpleGame.Utils;
-
+﻿using NotSimpleGame.BL.Implementation;
 using NotSimpleGame.DL.Implementation;
-using NotSimpleGame.BL.Implementation;
+using NotSimpleGame.UI.ViewModels;
+using NotSimpleGame.UI.Views;
+using NotSimpleGame.Utils;
+using System.Configuration;
+using System.Windows;
 
 namespace NotSimpleGame.UI
 {

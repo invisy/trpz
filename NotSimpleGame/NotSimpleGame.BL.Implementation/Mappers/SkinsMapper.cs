@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿using NotSimpleGame.Entities;
 using NotSimpleGame.Models.Skins;
-using NotSimpleGame.Entities;
-using System.Linq;
-
-using NotSimpleGame.BL.Abstraction.Mappers;
+using System;
+using System.Collections.Generic;
 
 namespace NotSimpleGame.BL.Implementation.Mappers
 {
@@ -26,7 +21,7 @@ namespace NotSimpleGame.BL.Implementation.Mappers
         public override Skin Map(SkinEntity entity)
         {
             Type type = characterTypesDict[entity.Character];
-            Skin skin = (Skin)Activator.CreateInstance(type, entity.Id,  entity.Name, entity.Price, entity.ModelPath);
+            Skin skin = (Skin)Activator.CreateInstance(type, entity.Id, entity.Name, entity.Price, entity.ModelPath);
             return skin;
         }
 

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using NotSimpleGame.BL.Abstraction.Mappers;
-
+﻿using NotSimpleGame.Entities;
 using NotSimpleGame.Models.Weapons;
-using NotSimpleGame.Entities;
+using System;
+using System.Collections.Generic;
 
 namespace NotSimpleGame.BL.Implementation.Mappers
 {
     class WeaponsMapper : GenericMapper<WeaponEntity, Weapon>
     {
-        private Dictionary<Entities.Enums.CharacterType, Type> characterTypesDict = 
+        private Dictionary<Entities.Enums.CharacterType, Type> characterTypesDict =
             new Dictionary<Entities.Enums.CharacterType, Type>();
 
         public WeaponsMapper()
@@ -24,7 +20,7 @@ namespace NotSimpleGame.BL.Implementation.Mappers
         public override Weapon Map(WeaponEntity entity)
         {
             Type type = characterTypesDict[entity.Character];
-            Weapon weapon = (Weapon)Activator.CreateInstance(type, entity.Id, entity.Name, entity.Distance, 
+            Weapon weapon = (Weapon)Activator.CreateInstance(type, entity.Id, entity.Name, entity.Distance,
                 entity.Damage, entity.Price, entity.ModelPath);
             return weapon;
         }

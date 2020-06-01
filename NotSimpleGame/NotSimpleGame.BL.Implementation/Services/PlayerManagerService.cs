@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using NotSimpleGame.Models;
-using NotSimpleGame.Models.Skins;
-using NotSimpleGame.Models.Characters;
-using NotSimpleGame.Models.Weapons;
-
-using NotSimpleGame.Entities;
+﻿using NotSimpleGame.BL.Abstraction;
+using NotSimpleGame.BL.Abstraction.Mappers;
 using NotSimpleGame.DL.Abstraction;
 using NotSimpleGame.DL.Abstraction.Repositories;
-using NotSimpleGame.BL.Abstraction;
-using NotSimpleGame.BL.Abstraction.Mappers;
+using NotSimpleGame.Entities;
+using NotSimpleGame.Models;
+using NotSimpleGame.Models.Characters;
+using NotSimpleGame.Models.Skins;
+using NotSimpleGame.Models.Weapons;
+using System.Collections.Generic;
 
 namespace NotSimpleGame.BL.Implementation.Services
 {
@@ -32,7 +26,7 @@ namespace NotSimpleGame.BL.Implementation.Services
 
         private List<Character> characters = new List<Character>();
 
-        public PlayerManagerService(IUnitOfWork UoW, IMapper<SkinEntity, Skin> skinsMapper, 
+        public PlayerManagerService(IUnitOfWork UoW, IMapper<SkinEntity, Skin> skinsMapper,
             IMapper<WeaponEntity, Weapon> weaponsMapper, IMapper<PlayerEntity, Player> playerMapper)
         {
             this._UoW = UoW;
@@ -51,7 +45,7 @@ namespace NotSimpleGame.BL.Implementation.Services
 
             player = _playerMapper.Map(_playerRepo.Get(1));
 
-            for (int i=0; i < characters.Count; i++)
+            for (int i = 0; i < characters.Count; i++)
             {
                 if (characters[i].GetType() == player.Character.GetType())
                     characters[i] = player.Character;

@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Collections.ObjectModel;
-
+﻿using NotSimpleGame.BL.Abstraction;
 using NotSimpleGame.Models;
 using NotSimpleGame.Models.Characters;
 using NotSimpleGame.Models.Skins;
 using NotSimpleGame.Models.Weapons;
-
-using NotSimpleGame.BL.Abstraction;
-
-using System.Windows;
 using NotSimpleGame.UI.Views;
-using System.Security.Cryptography.X509Certificates;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace NotSimpleGame.UI.ViewModels
 {
@@ -60,7 +53,7 @@ namespace NotSimpleGame.UI.ViewModels
             {
                 if (value != null)
                 {
-                    if(player.setWeapon(value))
+                    if (player.setWeapon(value))
                     {
                         selectedWeapon = value;
                         OnPropertyChanged("Money");
@@ -133,7 +126,7 @@ namespace NotSimpleGame.UI.ViewModels
                 SelectedWeapon = Weapons[0];
         }
 
-        public void UpdateObservableFromIEnumerable<TItem> (ObservableCollection<TItem> obsCol, IEnumerable<TItem> list)
+        public void UpdateObservableFromIEnumerable<TItem>(ObservableCollection<TItem> obsCol, IEnumerable<TItem> list)
         {
             obsCol.Clear();
             foreach (TItem elem in list)
@@ -141,7 +134,7 @@ namespace NotSimpleGame.UI.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));

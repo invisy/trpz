@@ -1,8 +1,7 @@
-﻿using System;
-
+﻿
 using NotSimpleGame.Models.Characters;
-using NotSimpleGame.Models.Weapons;
 using NotSimpleGame.Models.Skins;
+using NotSimpleGame.Models.Weapons;
 
 namespace NotSimpleGame.Models
 {
@@ -47,7 +46,7 @@ namespace NotSimpleGame.Models
             bool result = UserWallet.ChargeOff(weapon.Price);
             if (!result)
                 return false;
-            if(Character.Weapon != null)
+            if (Character.Weapon != null)
                 UserWallet.ChargeOn(Character.Weapon.Price);
             Character.setWeapon(weapon);
             return true;

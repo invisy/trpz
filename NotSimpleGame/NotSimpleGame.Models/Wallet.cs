@@ -1,7 +1,4 @@
-﻿
-using System;
-
-namespace NotSimpleGame.Models
+﻿namespace NotSimpleGame.Models
 {
     public class Wallet
     {
@@ -16,7 +13,7 @@ namespace NotSimpleGame.Models
 
         internal bool ChargeOff(uint value)
         {
-            if(value >= 0 && money >= value)
+            if (value >= 0 && money >= value)
             {
                 money -= value;
                 return true;
@@ -34,6 +31,6 @@ namespace NotSimpleGame.Models
             }
             else
                 return false;
-        }   
+        }
     }
 }

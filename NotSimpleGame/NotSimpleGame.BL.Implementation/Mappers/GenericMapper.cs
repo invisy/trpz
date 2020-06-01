@@ -1,9 +1,5 @@
-﻿using System;
+﻿using NotSimpleGame.BL.Abstraction.Mappers;
 using System.Collections.Generic;
-using System.Text;
-using NotSimpleGame.DL.Abstraction;
-
-using NotSimpleGame.BL.Abstraction.Mappers;
 
 namespace NotSimpleGame.BL.Implementation.Mappers
 {
