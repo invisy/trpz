@@ -7,20 +7,6 @@
     <UpgradeBackupLocation />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Migrations\20200527000237_InitialCreate.cs" />
-    <Compile Remove="Migrations\20200527000237_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20200527001506_RemoveNavProps.cs" />
-    <Compile Remove="Migrations\20200527001506_RemoveNavProps.Designer.cs" />
-    <Compile Remove="Migrations\20200527001927_InitialCreate.cs" />
-    <Compile Remove="Migrations\20200527001927_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20200529011249_ForeignKeysNameUpdate.cs" />
-    <Compile Remove="Migrations\20200529011249_ForeignKeysNameUpdate.Designer.cs" />
-    <Compile Remove="Migrations\20200529011434_InitialCreate.cs" />
-    <Compile Remove="Migrations\20200529011434_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20200529012317_New.cs" />
-    <Compile Remove="Migrations\20200529012317_New.Designer.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4">

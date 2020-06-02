@@ -1,55 +1,69 @@
 ﻿
-using NotSimpleGame.Models.Characters;
-using NotSimpleGame.Models.Skins;
-using NotSimpleGame.Models.Weapons;
+using System;
 
 namespace NotSimpleGame.Models
 {
     public class Player : BaseModel<int>
     {
+        public int Health { get; private set; }
         public Wallet UserWallet { get; private set; }
-        public Character Character { get; private set; }
-        public Player(int id, uint startMoney, Character character)
+        public Character SelectedCharacter { get; private set; }
+        public Weapon SelectedWeapon { get; private set; }
+        public Skin SelectedSkin { get; private set; }
+        public Player(int id, uint startMoney, Character character, Skin skin, Weapon weapon)
         {
             Id = id;
             UserWallet = new Wallet(startMoney);
-            this.Character = character;
+            SelectedCharacter = character;
+            SelectedSkin = skin;
+            SelectedWeapon = weapon;
         }
 
         public void setCharacter(Character character)
         {
-            if (Character.Skin != null)
+            if (SelectedSkin != null)
             {
-                UserWallet.ChargeOn(Character.Skin.Price);
+                UserWallet.ChargeOn(SelectedSkin.Price);
             }
-            if (Character.Weapon != null)
+            if (SelectedWeapon != null)
             {
-                UserWallet.ChargeOn(Character.Weapon.Price);
+                UserWallet.ChargeOn(SelectedWeapon.Price);
             }
-            Character.toDefault();
-            Character = character;
+            SelectedSkin = null;
+            SelectedWeapon = null;
+            SelectedCharacter = character;
         }
 
         public bool setSkin(Skin skin)
         {
-            bool result = UserWallet.ChargeOff(skin.Price);
-            if (!result)
-                return false;
-            if (Character.Skin != null)
-                UserWallet.ChargeOn(Character.Skin.Price);
-            Character.setSkin(skin);
-            return true;
+            if (skin.SupportedCharacterId == SelectedCharacter.Id)
+            {
+                bool result = UserWallet.ChargeOff(skin.Price);
+                if (!result)
+                    return false;
+                if (SelectedSkin != null)
+                    UserWallet.ChargeOn(SelectedSkin.Price);
+                this.SelectedSkin = skin;
+                return true;
+            }
+            else
+                throw new Exception("Select right skin!");
         }
 
         public bool setWeapon(Weapon weapon)
         {
-            bool result = UserWallet.ChargeOff(weapon.Price);
-            if (!result)
-                return false;
-            if (Character.Weapon != null)
-                UserWallet.ChargeOn(Character.Weapon.Price);
-            Character.setWeapon(weapon);
-            return true;
+            if (weapon.SupportedCharacterId == SelectedCharacter.Id)
+            {
+                bool result = UserWallet.ChargeOff(weapon.Price);
+                if (!result)
+                    return false;
+                if (SelectedWeapon != null)
+                    UserWallet.ChargeOn(SelectedWeapon.Price);
+                this.SelectedWeapon = weapon;
+                return true;
+            }
+            else
+                throw new Exception("Select right weapon!");
         }
     }
 }

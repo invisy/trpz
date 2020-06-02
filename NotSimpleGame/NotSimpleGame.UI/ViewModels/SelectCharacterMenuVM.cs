@@ -1,8 +1,5 @@
 ﻿using NotSimpleGame.BL.Abstraction;
 using NotSimpleGame.Models;
-using NotSimpleGame.Models.Characters;
-using NotSimpleGame.Models.Skins;
-using NotSimpleGame.Models.Weapons;
 using NotSimpleGame.UI.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -41,7 +38,7 @@ namespace NotSimpleGame.UI.ViewModels
                 {
                     player.setCharacter(value);
                     selectedCharacter = value;
-                    CharacterWasUpdated(value);
+                    CharacterWasUpdated(selectedCharacter);
                     OnPropertyChanged("SelectedCharacter");
                 }
             }
@@ -101,14 +98,14 @@ namespace NotSimpleGame.UI.ViewModels
             weapons = new ObservableCollection<Weapon>();
             skins = new ObservableCollection<Skin>();
 
-            selectedCharacter = player.Character;
+            selectedCharacter = characters.Where(x => x.Id == player.SelectedCharacter.Id).FirstOrDefault();
             IEnumerable<Skin> skinsList = _playerManager.getSkins(selectedCharacter);
             UpdateObservableFromIEnumerable<Skin>(skins, skinsList);
             IEnumerable<Weapon> weaponList = _playerManager.getWeapons(selectedCharacter);
             UpdateObservableFromIEnumerable(weapons, weaponList);
 
-            selectedSkin = skins.Where(x => x.Id == player.Character.Skin.Id).FirstOrDefault();
-            selectedWeapon = weapons.Where(x => x.Id == player.Character.Weapon.Id).FirstOrDefault();
+            selectedSkin = skins.Where(x => x.Id == player.SelectedSkin.Id).FirstOrDefault();
+            selectedWeapon = weapons.Where(x => x.Id == player.SelectedWeapon.Id).FirstOrDefault();
 
             GoNextCommand = new RelayCommand(_ => GoNext());
         }

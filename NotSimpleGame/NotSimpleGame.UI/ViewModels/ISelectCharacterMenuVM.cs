@@ -1,7 +1,5 @@
 ﻿
-using NotSimpleGame.Models.Characters;
-using NotSimpleGame.Models.Skins;
-using NotSimpleGame.Models.Weapons;
+using NotSimpleGame.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 

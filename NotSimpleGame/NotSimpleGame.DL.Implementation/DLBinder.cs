@@ -12,6 +12,7 @@ namespace NotSimpleGame.DL.Implementation
         public static void BindDL(this IIoCContainer container, string connectionString)
         {
             container.Register<IWeaponsRepository, WeaponsRepository>();
+            container.Register<ICharactersRepository, CharactersRepository>();
             container.Register<ISkinsRepository, SkinsRepository>();
             container.Register<IPlayerRepository, PlayerRepository>();
             container.Register<IUnitOfWork, UnitOfWork>();

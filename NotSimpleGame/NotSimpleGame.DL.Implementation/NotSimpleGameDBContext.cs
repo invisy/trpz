@@ -22,6 +22,38 @@ namespace NotSimpleGame.DL.Implementation
         {
             base.OnModelCreating(modelBuilder);
 
+            var character1 = new CharacterEntity
+            {
+                Id = 1,
+                Name = "Ельф",
+                MoveSpeed = 100,
+                JumpHeight = 100,
+            };
+
+            var character2 = new CharacterEntity
+            {
+                Id = 2,
+                Name = "Гном",
+                MoveSpeed = 80,
+                JumpHeight = 120,
+            };
+
+            var character3 = new CharacterEntity
+            {
+                Id = 3,
+                Name = "Маг",
+                MoveSpeed = 120,
+                JumpHeight = 80,
+            };
+
+            var character4 = new CharacterEntity
+            {
+                Id = 4,
+                Name = "Воїн",
+                MoveSpeed = 60,
+                JumpHeight = 150,
+            };
+
             var weapon1 = new WeaponEntity
             {
                 Id = 1,
@@ -30,7 +62,7 @@ namespace NotSimpleGame.DL.Implementation
                 Distance = 200,
                 ModelPath = "models/weapons/skin1.3ds",
                 Name = "Стандартний молот",
-                Character = Entities.Enums.CharacterType.GNOME
+                CharacterId = 2
             };
 
             var weapon2 = new WeaponEntity
@@ -41,7 +73,7 @@ namespace NotSimpleGame.DL.Implementation
                 Distance = 300,
                 ModelPath = "models/weapons/skin2.3ds",
                 Name = "Стандартний лук",
-                Character = Entities.Enums.CharacterType.ELF
+                CharacterId = 1
             };
 
             var weapon3 = new WeaponEntity
@@ -52,7 +84,7 @@ namespace NotSimpleGame.DL.Implementation
                 Distance = 100,
                 ModelPath = "models/weapons/skin3.3ds",
                 Name = "Стандартний меч",
-                Character = Entities.Enums.CharacterType.WARRIOR
+                CharacterId = 4
             };
 
             var weapon4 = new WeaponEntity
@@ -63,7 +95,7 @@ namespace NotSimpleGame.DL.Implementation
                 Distance = 50,
                 ModelPath = "models/weapons/skin4.3ds",
                 Name = "Стандартний посох",
-                Character = Entities.Enums.CharacterType.MAGICIAN
+                CharacterId = 3
             };
 
             var weapon5 = new WeaponEntity
@@ -74,7 +106,7 @@ namespace NotSimpleGame.DL.Implementation
                 Distance = 50,
                 ModelPath = "models/weapons/skin5.3ds",
                 Name = "Золотий посох",
-                Character = Entities.Enums.CharacterType.MAGICIAN
+                CharacterId = 3
             };
 
             var skin1 = new SkinEntity
@@ -83,7 +115,7 @@ namespace NotSimpleGame.DL.Implementation
                 Price = 0,
                 ModelPath = "models/skins/skin1.3ds",
                 Name = "Стандартний вигляд",
-                Character = Entities.Enums.CharacterType.GNOME
+                CharacterId = 2
             };
 
             var skin2 = new SkinEntity
@@ -92,7 +124,7 @@ namespace NotSimpleGame.DL.Implementation
                 Price = 0,
                 ModelPath = "models/skins/skin2.3ds",
                 Name = "Стандартний вигляд",
-                Character = Entities.Enums.CharacterType.ELF
+                CharacterId = 1
             };
 
             var skin3 = new SkinEntity
@@ -101,7 +133,7 @@ namespace NotSimpleGame.DL.Implementation
                 Price = 0,
                 ModelPath = "models/skins/skin3.3ds",
                 Name = "Стандартний вигляд",
-                Character = Entities.Enums.CharacterType.WARRIOR
+                CharacterId = 4
             };
 
             var skin4 = new SkinEntity
@@ -110,7 +142,7 @@ namespace NotSimpleGame.DL.Implementation
                 Price = 0,
                 ModelPath = "models/skins/skin4.3ds",
                 Name = "Стандартний вигляд",
-                Character = Entities.Enums.CharacterType.MAGICIAN
+                CharacterId = 3
             };
 
             var skin5 = new SkinEntity
@@ -119,7 +151,7 @@ namespace NotSimpleGame.DL.Implementation
                 Price = 100,
                 ModelPath = "models/skins/skin5.3ds",
                 Name = "Маг з плащем",
-                Character = Entities.Enums.CharacterType.MAGICIAN
+                CharacterId = 3
             };
 
             var skin6 = new SkinEntity
@@ -128,14 +160,14 @@ namespace NotSimpleGame.DL.Implementation
                 Price = 300,
                 ModelPath = "models/skins/skin6.3ds",
                 Name = "Маг в костюмі",
-                Character = Entities.Enums.CharacterType.MAGICIAN
+                CharacterId = 3
             };
 
             var player = new PlayerEntity
             {
                 Id = 1,
-                Character = Entities.Enums.CharacterType.ELF,
                 Money = 500,
+                CharacterId = 2,
                 SkinId = 2,
                 WeaponId = 2
             };
@@ -145,8 +177,18 @@ namespace NotSimpleGame.DL.Implementation
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.Property(e => e.Money).IsRequired();
+                entity.HasOne<CharacterEntity>(p => p.Character).WithMany(p => p.Players).HasForeignKey(w => w.CharacterId);
                 entity.HasOne<WeaponEntity>(p => p.Weapon).WithMany(p => p.Players).HasForeignKey(w => w.WeaponId);
                 entity.HasOne<SkinEntity>(p => p.Skin).WithMany(p => p.Players).HasForeignKey(s => s.SkinId);
+            });
+
+            modelBuilder.Entity<CharacterEntity>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.Name).IsRequired();
+                entity.Property(e => e.MoveSpeed).IsRequired();
+                entity.Property(e => e.JumpHeight).IsRequired();
             });
 
             modelBuilder.Entity<SkinEntity>(entity =>
@@ -156,7 +198,7 @@ namespace NotSimpleGame.DL.Implementation
                 entity.Property(e => e.Name).IsRequired();
                 entity.Property(e => e.Price).IsRequired();
                 entity.Property(e => e.ModelPath).IsRequired();
-                entity.Property(e => e.Character).IsRequired();
+                entity.Property(e => e.CharacterId).IsRequired();
             });
 
             modelBuilder.Entity<WeaponEntity>(entity =>
@@ -167,10 +209,11 @@ namespace NotSimpleGame.DL.Implementation
                 entity.Property(e => e.Damage).IsRequired();
                 entity.Property(e => e.Price).IsRequired();
                 entity.Property(e => e.ModelPath).IsRequired();
-                entity.Property(e => e.Character).IsRequired();
+                entity.Property(e => e.CharacterId).IsRequired();
             });
 
             modelBuilder.Entity<PlayerEntity>().HasData(player);
+            modelBuilder.Entity<CharacterEntity>().HasData(character1, character2, character3, character4);
             modelBuilder.Entity<WeaponEntity>().HasData(weapon1, weapon2, weapon3, weapon4, weapon5);
             modelBuilder.Entity<SkinEntity>().HasData(skin1, skin2, skin3, skin4, skin5, skin6);
         }

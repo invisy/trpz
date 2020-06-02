@@ -13,12 +13,12 @@ namespace NotSimpleGame.DL.Implementation.Repositories
         }
         public override PlayerEntity Get(int id)
         {
-            return _dbSet.Include(p => p.Skin).Include(p => p.Weapon).FirstOrDefault(x => x.Id == id);
+            return _dbSet.Include(p => p.Character).Include(p => p.Skin).Include(p => p.Weapon).FirstOrDefault(x => x.Id == id);
         }
 
         public override IEnumerable<PlayerEntity> GetList()
         {
-            return _dbSet.Include(p => p.Skin).Include(p => p.Weapon).ToList();
+            return _dbSet.Include(p => p.Character).Include(p => p.Skin).Include(p => p.Weapon).ToList();
         }
 
     }

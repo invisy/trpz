@@ -1,5 +1,4 @@
-﻿using NotSimpleGame.Entities.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace NotSimpleGame.Entities
@@ -14,7 +13,7 @@ namespace NotSimpleGame.Entities
         public String Name { get; set; }
         public uint Price { get; set; }
         public String ModelPath { get; set; }
-        public CharacterType Character { get; set; }
+        public int CharacterId { get; set; }
         public IEnumerable<PlayerEntity> Players { get; set; }
     }
 }

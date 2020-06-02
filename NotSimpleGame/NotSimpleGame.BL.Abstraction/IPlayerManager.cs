@@ -1,7 +1,4 @@
 ﻿using NotSimpleGame.Models;
-using NotSimpleGame.Models.Characters;
-using NotSimpleGame.Models.Skins;
-using NotSimpleGame.Models.Weapons;
 using System.Collections.Generic;
 
 namespace NotSimpleGame.BL.Abstraction

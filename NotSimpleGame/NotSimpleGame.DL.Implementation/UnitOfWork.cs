@@ -10,10 +10,11 @@ namespace NotSimpleGame.DL.Implementation
         private readonly NotSimpleGameDBContext _dbContext;
         private Dictionary<Type, Object> _repositories = new Dictionary<Type, object>();
         public UnitOfWork(NotSimpleGameDBContext dbContext, IPlayerRepository playerRepository,
-            IWeaponsRepository weaponsRepository, ISkinsRepository skinsRepository)
+            ICharactersRepository charactersRepository, IWeaponsRepository weaponsRepository, ISkinsRepository skinsRepository)
         {
             _dbContext = dbContext;
             _repositories.Add(typeof(IPlayerRepository), playerRepository);
+            _repositories.Add(typeof(ICharactersRepository), charactersRepository);
             _repositories.Add(typeof(IWeaponsRepository), weaponsRepository);
             _repositories.Add(typeof(ISkinsRepository), skinsRepository);
         }

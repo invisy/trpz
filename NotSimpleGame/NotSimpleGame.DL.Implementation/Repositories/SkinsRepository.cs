@@ -1,6 +1,5 @@
 ﻿using NotSimpleGame.DL.Abstraction.Repositories;
 using NotSimpleGame.Entities;
-using NotSimpleGame.Entities.Enums;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,7 +14,7 @@ namespace NotSimpleGame.DL.Implementation.Repositories
 
         public IEnumerable<SkinEntity> FindAllByCharacter(int character)
         {
-            IQueryable<SkinEntity> result = _dbSet.AsQueryable().Where(skin => skin.Character == (CharacterType)character);
+            IQueryable<SkinEntity> result = _dbSet.AsQueryable().Where(skin => skin.CharacterId == character);
             return result.ToList();
         }
     }
